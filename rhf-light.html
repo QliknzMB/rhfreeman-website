@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RH Freeman — Precision Sheet Metal Fabrication</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #181D38;
+    --navy-mid: #1E2445;
+    --navy-light: #252C52;
+    --gold: #8A7340;
+    --gold-dark: #7A6538;
+    --gold-dim: rgba(138,115,64,0.3);
+    --cream: #F7F3EC;
+    --cream-warm: #F0EBE0;
+    --cream-dark: #E5DFD2;
+    --linen: #FDFBF7;
+    --text-body: #4A4640;
+    --text-dim: #8A857C;
+    --text-heading: #1E1D1A;
+    --border-light: rgba(184,154,90,0.2);
+    --border-lighter: rgba(184,154,90,0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    background: var(--linen);
+    color: var(--text-body);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ===== GRAIN ===== */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.02;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+
+  /* ===== UTILITY ===== */
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 40px; }
+  .container-narrow { max-width: 860px; margin: 0 auto; padding: 0 40px; }
+
+  .gold-rule {
+    width: 60px;
+    height: 1.5px;
+    background: var(--gold);
+    margin: 0 auto;
+  }
+
+  .gold-rule-diamond {
+    width: 100px;
+    height: 1px;
+    background: var(--gold-dim);
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .gold-rule-diamond::before {
+    content: '◆';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 7px;
+    color: var(--gold);
+    background: var(--linen);
+    padding: 0 8px;
+  }
+
+  .section-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .drop-cap::first-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.8em;
+    float: left;
+    line-height: 0.8;
+    margin-right: 12px;
+    margin-top: 6px;
+    color: var(--navy);
+    font-weight: 600;
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  .animate-up {
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .animate-fade {
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+  }
+
+  .d1 { animation-delay: 0.1s; }
+  .d2 { animation-delay: 0.2s; }
+  .d3 { animation-delay: 0.35s; }
+  .d4 { animation-delay: 0.5s; }
+  .d5 { animation-delay: 0.65s; }
+  .d6 { animation-delay: 0.8s; }
+
+  /* ===== NAVIGATION ===== */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 0 40px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(253,251,247,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-lighter);
+  }
+
+  .nav-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    text-decoration: none;
+  }
+
+  .nav-logo .initials {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+  }
+
+  .nav-logo .rule {
+    width: 50px;
+    height: 1px;
+    background: var(--gold-dark);
+  }
+
+  .nav-logo .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+
+  .nav-logo .est {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-dim);
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a:hover { color: var(--navy); }
+
+  .nav-cta {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--linen);
+    background: var(--navy);
+    padding: 10px 24px;
+    transition: all 0.3s ease;
+  }
+
+  .nav-cta:hover {
+    background: var(--gold);
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 40px 80px;
+    position: relative;
+    background: var(--linen);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      radial-gradient(ellipse at 30% 30%, rgba(184,154,90,0.04) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 70%, rgba(184,154,90,0.03) 0%, transparent 50%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+  }
+
+  .hero-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 56px;
+  }
+
+  .hero-logo .initials {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+  }
+
+  .hero-logo .logo-rule {
+    width: 80px;
+    height: 1.5px;
+    background: var(--gold-dark);
+    margin: 6px 0;
+    position: relative;
+  }
+
+  .hero-logo .logo-rule.diamond::before {
+    content: '◆';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 6px;
+    color: var(--gold);
+    background: var(--linen);
+    padding: 0 6px;
+  }
+
+  .hero-logo .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+
+  .hero-logo .est {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-top: 2px;
+  }
+
+  .hero-sub {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 40px;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1.25;
+    color: var(--text-heading);
+    margin-bottom: 8px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--gold-dark);
+  }
+
+  .hero-body {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--text-dim);
+    max-width: 520px;
+    margin: 0 auto 48px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px 36px;
+    background: var(--navy);
+    color: var(--cream);
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold);
+    color: var(--linen);
+  }
+
+  .btn-secondary {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px 36px;
+    border: 1px solid var(--border-light);
+    color: var(--navy);
+    transition: all 0.3s ease;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    background: rgba(184,154,90,0.05);
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .scroll-indicator span {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* ===== STATS STRIP ===== */
+  .stats-strip {
+    border-top: 1px solid var(--border-lighter);
+    border-bottom: 1px solid var(--border-lighter);
+    padding: 48px 40px;
+    background: var(--cream);
+  }
+
+  .stats-grid {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    text-align: center;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 300;
+    color: var(--navy);
+    line-height: 1.1;
+  }
+
+  .stat-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  /* ===== STORY ===== */
+  .story {
+    padding: 120px 40px;
+    background: var(--linen);
+  }
+
+  .story-grid {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .story-image {
+    position: relative;
+    aspect-ratio: 4/5;
+    background: var(--cream-dark);
+    overflow: hidden;
+    box-shadow: 20px 20px 0 var(--cream);
+    outline: 1px solid var(--border-lighter);
+    outline-offset: 12px;
+  }
+
+  .story-image-placeholder {
+    width: 100%;
+    height: 100%;
+    background:
+      linear-gradient(135deg, var(--cream-warm) 0%, var(--cream-dark) 50%, var(--cream-warm) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .placeholder-icon {
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--border-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-size: 18px;
+  }
+
+  .placeholder-text {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .story-badge {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: var(--navy);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  .story-badge .number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .story-badge .label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-top: 2px;
+  }
+
+  .story-content .section-label { margin-bottom: 20px; }
+
+  .story-content h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--text-heading);
+    margin-bottom: 8px;
+  }
+
+  .story-content h2 em {
+    font-style: italic;
+    color: var(--gold-dark);
+  }
+
+  .story-text {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--text-body);
+    margin-top: 28px;
+  }
+
+  .story-text p + p { margin-top: 20px; }
+
+  .story-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 32px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--gold-dark);
+    transition: gap 0.3s ease;
+  }
+
+  .story-link:hover { gap: 16px; }
+
+  /* ===== QUOTE ===== */
+  .quote-section {
+    padding: 80px 40px;
+    background: var(--cream);
+    border-top: 1px solid var(--border-lighter);
+    border-bottom: 1px solid var(--border-lighter);
+    text-align: center;
+  }
+
+  .quote-section blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--navy);
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .quote-section .attribution {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 24px;
+  }
+
+  /* ===== CAPABILITIES ===== */
+  .capabilities {
+    padding: 120px 40px;
+    background: var(--linen);
+  }
+
+  .capabilities-header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+
+  .capabilities-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 400;
+    color: var(--text-heading);
+    margin: 16px 0 12px;
+  }
+
+  .capabilities-header p {
+    font-size: 15px;
+    color: var(--text-dim);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .capabilities-grid {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .capability-card {
+    padding: 44px 32px;
+    background: var(--cream);
+    border: 1px solid var(--border-lighter);
+    transition: all 0.4s ease;
+    position: relative;
+  }
+
+  .capability-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gold);
+    transition: width 0.4s ease;
+  }
+
+  .capability-card:hover::before { width: 100%; }
+
+  .capability-card:hover {
+    background: var(--cream-warm);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+  }
+
+  .capability-icon {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--border-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    font-size: 18px;
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+  }
+
+  .capability-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-heading);
+    margin-bottom: 12px;
+  }
+
+  .capability-card p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--text-dim);
+  }
+
+  .capability-card .spec-link {
+    display: inline-block;
+    margin-top: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--gold-dark);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.3s ease;
+  }
+
+  .capability-card:hover .spec-link {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== SECTORS ===== */
+  .sectors {
+    padding: 100px 40px;
+    background: var(--navy);
+  }
+
+  .sectors-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .sectors-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 400;
+    color: var(--cream);
+    margin: 16px 0 12px;
+  }
+
+  .sectors-header .section-label {
+    color: rgba(196,162,101,0.7);
+  }
+
+  .sectors-header p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.45);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .sectors-grid {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .sector-card {
+    text-align: center;
+    padding: 40px 24px;
+    border: 1px solid rgba(196,162,101,0.12);
+    transition: all 0.3s ease;
+  }
+
+  .sector-card:hover {
+    border-color: rgba(196,162,101,0.3);
+    background: rgba(196,162,101,0.04);
+  }
+
+  .sector-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+    display: block;
+    color: rgba(196,162,101,0.7);
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .sector-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  .sector-card p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* ===== CLIENT LOGOS ===== */
+  .clients {
+    padding: 72px 40px;
+    background: var(--cream);
+    border-top: 1px solid var(--border-lighter);
+  }
+
+  .clients-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .clients-header p {
+    font-size: 15px;
+    color: var(--text-dim);
+    margin-top: 12px;
+  }
+
+  .clients-logos {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+  }
+
+  .client-logo-item {
+    aspect-ratio: 2/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-lighter);
+    padding: 20px;
+    background: var(--linen);
+    transition: all 0.3s ease;
+  }
+
+  .client-logo-item:hover {
+    border-color: var(--border-light);
+    background: var(--cream-warm);
+  }
+
+  .client-logo-placeholder {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    opacity: 0.4;
+    text-align: center;
+  }
+
+  /* ===== CASE STUDIES ===== */
+  .case-studies {
+    padding: 120px 40px;
+    background: var(--linen);
+    border-top: 1px solid var(--border-lighter);
+  }
+
+  .case-studies-header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+
+  .case-studies-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 400;
+    color: var(--text-heading);
+    margin: 16px 0 12px;
+  }
+
+  .case-studies-header p {
+    font-size: 15px;
+    color: var(--text-dim);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .case-studies-grid {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+
+  .case-card {
+    border: 1px solid var(--border-lighter);
+    background: var(--cream);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .case-card:hover {
+    border-color: var(--border-light);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+  }
+
+  .case-image {
+    aspect-ratio: 16/9;
+    background: var(--cream-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    border-bottom: 1px solid var(--border-lighter);
+  }
+
+  .case-image .placeholder-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .case-body {
+    padding: 32px;
+  }
+
+  .case-body .case-sector {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .case-body h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-heading);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .case-body p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+  }
+
+  .case-stats {
+    display: flex;
+    gap: 32px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-lighter);
+  }
+
+  .case-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .case-stat .value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--navy);
+  }
+
+  .case-stat .label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  /* ===== TESTIMONIALS ===== */
+  .testimonials {
+    padding: 100px 40px;
+    background: var(--cream);
+    border-top: 1px solid var(--border-lighter);
+  }
+
+  .testimonials-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .testimonials-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 400;
+    color: var(--text-heading);
+    margin: 16px 0 12px;
+  }
+
+  .testimonials-grid {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .testimonial-card {
+    padding: 40px 32px;
+    background: var(--linen);
+    border: 1px solid var(--border-lighter);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    transition: border-color 0.3s ease;
+  }
+
+  .testimonial-card:hover {
+    border-color: var(--border-light);
+  }
+
+  .testimonial-card .quote-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    line-height: 0.6;
+    color: var(--gold);
+    opacity: 0.4;
+  }
+
+  .testimonial-card blockquote {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--text-body);
+    flex-grow: 1;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-lighter);
+  }
+
+  .testimonial-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--cream-warm);
+    border: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  .testimonial-info .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-heading);
+    display: block;
+  }
+
+  .testimonial-info .role {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  /* ===== TEAM ===== */
+  .team {
+    padding: 120px 40px;
+    background: var(--linen);
+    border-top: 1px solid var(--border-lighter);
+  }
+
+  .team-header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+
+  .team-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 400;
+    color: var(--text-heading);
+    margin: 16px 0 12px;
+  }
+
+  .team-header p {
+    font-size: 15px;
+    color: var(--text-dim);
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  .team-grid {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+
+  .team-card {
+    text-align: center;
+  }
+
+  .team-photo {
+    aspect-ratio: 3/4;
+    background: var(--cream-dark);
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-lighter);
+  }
+
+  .team-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--cream-warm) 0%, var(--cream-dark) 100%);
+  }
+
+  .team-photo-placeholder .placeholder-icon {
+    width: 56px;
+    height: 56px;
+    border: 1px solid var(--border-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--navy);
+    background: none;
+  }
+
+  .team-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-heading);
+    margin-bottom: 4px;
+  }
+
+  .team-card .team-role {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .team-card .team-bio {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-dim);
+  }
+
+  /* ===== CTA ===== */
+  .cta-section {
+    padding: 120px 40px;
+    text-align: center;
+    background: var(--linen);
+    position: relative;
+  }
+
+  .cta-section .cta-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    color: var(--gold);
+    margin-bottom: 32px;
+    display: block;
+  }
+
+  .cta-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--text-heading);
+    margin-bottom: 16px;
+  }
+
+  .cta-section p {
+    font-size: 16px;
+    color: var(--text-dim);
+    max-width: 480px;
+    margin: 0 auto 40px;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 64px 40px;
+    border-top: 1px solid var(--border-lighter);
+    background: var(--cream);
+  }
+
+  .footer-grid {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 48px;
+  }
+
+  .footer-brand .footer-logo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 16px;
+  }
+
+  .footer-brand .footer-logo .initials {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+  }
+
+  .footer-brand .footer-logo .rule {
+    width: 56px;
+    height: 1px;
+    background: var(--gold-dark);
+    margin: 4px 0;
+  }
+
+  .footer-brand .footer-logo .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+
+  .footer-brand .footer-logo .est {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+  }
+
+  .footer-brand p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    max-width: 280px;
+  }
+
+  .footer-col h4 {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 20px;
+  }
+
+  .footer-col ul {
+    list-style: none;
+  }
+
+  .footer-col ul li {
+    margin-bottom: 10px;
+  }
+
+  .footer-col ul li a {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 13px;
+    text-decoration: none;
+    color: var(--text-dim);
+    transition: color 0.3s ease;
+  }
+
+  .footer-col ul li a:hover { color: var(--navy); }
+
+  .footer-bottom {
+    max-width: 1140px;
+    margin: 48px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-lighter);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-bottom p {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+  }
+
+  .footer-certs {
+    display: flex;
+    gap: 12px;
+  }
+
+  .cert-badge {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 6px 14px;
+    border: 1px solid var(--border-light);
+    color: var(--navy);
+    text-transform: uppercase;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .story-grid { grid-template-columns: 1fr; gap: 40px; }
+    .capabilities-grid { grid-template-columns: 1fr 1fr; }
+    .sectors-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    .hero h1 { font-size: 36px; }
+    .hero-logo .name { font-size: 36px; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .case-studies-grid { grid-template-columns: 1fr; }
+    .clients-logos { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (max-width: 600px) {
+    .capabilities-grid { grid-template-columns: 1fr; }
+    .sectors-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr; }
+    .clients-logos { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 28px; }
+    .hero-logo .name { font-size: 28px; }
+    nav { padding: 0 20px; }
+    .container, .container-narrow { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="initials">R H</span>
+    <span class="rule"></span>
+    <span class="name">Freeman</span>
+    <span class="est">Est. 1946</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#heritage">Heritage</a></li>
+    <li><a href="#capabilities">Capabilities</a></li>
+    <li><a href="#sectors">Sectors</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Request Quote</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+
+    <div class="hero-logo animate-up d1">
+      <span class="initials">R H</span>
+      <span class="logo-rule diamond"></span>
+      <span class="name">Freeman</span>
+      <span class="logo-rule diamond"></span>
+      <span class="est">Est. 1946</span>
+    </div>
+
+    <p class="hero-sub animate-up d2">Precision Sheet Metal Fabrication</p>
+
+    <h1 class="animate-up d3">Where Precision Becomes<br><em>a Tradition</em></h1>
+
+    <p class="hero-body animate-up d4">
+      Since 1946, RH Freeman has delivered precision metalwork to industries that cannot afford compromise. Nearly eight decades of craft, refined with modern engineering.
+    </p>
+
+    <div class="hero-actions animate-up d5">
+      <a href="#contact" class="btn-primary">Request a Quote</a>
+      <a href="#capabilities" class="btn-secondary">View Capabilities</a>
+    </div>
+
+  </div>
+
+  <div class="scroll-indicator animate-fade d6">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-strip">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <span class="stat-number">1946</span>
+      <span class="stat-label">Year Founded</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">75+</span>
+      <span class="stat-label">Years Experience</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">ISO</span>
+      <span class="stat-label">9001 Certified</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">100%</span>
+      <span class="stat-label">South African Made</span>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story" id="heritage">
+  <div class="story-grid">
+    <div class="story-image">
+      <div class="story-image-placeholder">
+        <div class="placeholder-icon">✦</div>
+        <span class="placeholder-text">Workshop Photography</span>
+      </div>
+      <div class="story-badge">
+        <span class="number">79</span>
+        <span class="label">Years</span>
+      </div>
+    </div>
+    <div class="story-content">
+      <span class="section-label">Our Legacy</span>
+      <h2>A Heritage Built on<br><em>Uncompromising Standards</em></h2>
+      <div class="story-text">
+        <p class="drop-cap">Founded in 1946, RH Freeman began with a simple yet profound promise: to deliver metalwork of the highest standard. In an era where every cut and weld was a testament to the maker's hand, we forged a reputation for reliability that has stood the test of time.</p>
+        <p>Over seven decades later, while our tools have evolved from manual lathes to state-of-the-art 5-axis CNC machinery, our philosophy remains unchanged. We combine decades of specialised knowledge with modern technology to serve South Africa's most demanding industries — ensuring that the human touch is never lost to automation.</p>
+        <p>Under new ownership since October 2025, RH Freeman enters its next chapter with the same founding commitment to precision, quality, and craftsmanship that has defined us for nearly eighty years.</p>
+      </div>
+      <a href="#" class="story-link">Read Our Full Story <span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <div class="container-narrow">
+    <div class="gold-rule-diamond" style="margin-bottom: 40px;"></div>
+    <blockquote>
+      "Quality is not an act, it is a habit. Every sheet we cut, every joint we weld, carries nearly eighty years of accumulated expertise."
+    </blockquote>
+    <p class="attribution">— The Freeman Standard</p>
+    <div class="gold-rule-diamond" style="margin-top: 40px;"></div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section class="capabilities" id="capabilities">
+  <div class="capabilities-header">
+    <span class="section-label">Technical Specifications</span>
+    <h2>Our Capabilities</h2>
+    <div class="gold-rule" style="margin: 16px auto 20px;"></div>
+    <p>Precision engineering services tailored to your exact specifications, from prototype to production.</p>
+  </div>
+
+  <div class="capabilities-grid">
+    <div class="capability-card">
+      <div class="capability-icon">⚙</div>
+      <h3>CNC Machining</h3>
+      <p>High-precision milling and turning for complex components with tight tolerances. Multi-axis capability for intricate geometries.</p>
+      <a href="#" class="spec-link">View Specs →</a>
+    </div>
+    <div class="capability-card">
+      <div class="capability-icon">✂</div>
+      <h3>Laser Cutting</h3>
+      <p>State-of-the-art fibre laser technology for clean, accurate cuts across ferrous and non-ferrous metals with minimal thermal distortion.</p>
+      <a href="#" class="spec-link">View Specs →</a>
+    </div>
+    <div class="capability-card">
+      <div class="capability-icon">⚡</div>
+      <h3>Welding &amp; Assembly</h3>
+      <p>Expert TIG, MIG, and spot welding by certified craftsmen. Structural and precision assemblies built to exacting standards.</p>
+      <a href="#" class="spec-link">View Specs →</a>
+    </div>
+    <div class="capability-card">
+      <div class="capability-icon">◈</div>
+      <h3>Finishing</h3>
+      <p>Comprehensive surface finishing including powder coating, plating, anodising, and polishing to meet aesthetic and functional requirements.</p>
+      <a href="#" class="spec-link">View Specs →</a>
+    </div>
+    <div class="capability-card">
+      <div class="capability-icon">△</div>
+      <h3>Design &amp; Prototyping</h3>
+      <p>Collaborative engineering support from concept through to production-ready designs. CAD/CAM integration for seamless manufacturing.</p>
+      <a href="#" class="spec-link">View Specs →</a>
+    </div>
+    <div class="capability-card">
+      <div class="capability-icon">✦</div>
+      <h3>Quality Assurance</h3>
+      <p>Rigorous inspection protocols using CMM measurement, ensuring every part meets exacting standards with full traceability.</p>
+      <a href="#" class="spec-link">View Specs →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS (navy contrast section) -->
+<section class="sectors" id="sectors">
+  <div class="sectors-header">
+    <span class="section-label">Industries We Serve</span>
+    <h2>Sectors</h2>
+    <div class="gold-rule" style="margin: 16px auto 20px; background: rgba(196,162,101,0.4);"></div>
+    <p>Delivering precision fabrication to industries where failure is not an option.</p>
+  </div>
+
+  <div class="sectors-grid">
+    <div class="sector-card">
+      <span class="sector-icon">✈</span>
+      <h4>Aerospace</h4>
+      <p>Flight-critical components manufactured to AS9100 tolerances for defence and commercial aviation.</p>
+    </div>
+    <div class="sector-card">
+      <span class="sector-icon">⚔</span>
+      <h4>Defence</h4>
+      <p>Ruggedised enclosures and chassis built for tactical environments and demanding field conditions.</p>
+    </div>
+    <div class="sector-card">
+      <span class="sector-icon">⏚</span>
+      <h4>Industrial</h4>
+      <p>Heavy-duty fabrication for mining, energy, and infrastructure — built to endure South Africa's toughest conditions.</p>
+    </div>
+    <div class="sector-card">
+      <span class="sector-icon">◎</span>
+      <h4>Precision OEM</h4>
+      <p>Custom sub-assemblies and components for original equipment manufacturers requiring repeatable accuracy.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENT LOGOS -->
+<section class="clients">
+  <div class="clients-header">
+    <span class="section-label">Trusted By</span>
+    <p>Partnering with leading organisations across Southern Africa</p>
+  </div>
+  <div class="clients-logos">
+    <div class="client-logo-item"><span class="client-logo-placeholder">Client Logo</span></div>
+    <div class="client-logo-item"><span class="client-logo-placeholder">Client Logo</span></div>
+    <div class="client-logo-item"><span class="client-logo-placeholder">Client Logo</span></div>
+    <div class="client-logo-item"><span class="client-logo-placeholder">Client Logo</span></div>
+    <div class="client-logo-item"><span class="client-logo-placeholder">Client Logo</span></div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="case-studies">
+  <div class="case-studies-header">
+    <span class="section-label">Project Portfolio</span>
+    <h2>Case Studies</h2>
+    <div class="gold-rule" style="margin: 16px auto 20px;"></div>
+    <p>A selection of projects that demonstrate our precision, reliability, and problem-solving capabilities.</p>
+  </div>
+
+  <div class="case-studies-grid">
+    <div class="case-card">
+      <div class="case-image">
+        <div class="placeholder-icon">✦</div>
+        <span class="placeholder-text">Project Photography</span>
+      </div>
+      <div class="case-body">
+        <span class="case-sector">Defence</span>
+        <h3>Ruggedised Enclosures for Tactical Communications</h3>
+        <p>Custom-fabricated aluminium enclosures for field-deployable communications systems, requiring IP67 rating and MIL-STD compliance across extreme temperature ranges.</p>
+        <div class="case-stats">
+          <div class="case-stat"><span class="value">±0.1mm</span><span class="label">Tolerance</span></div>
+          <div class="case-stat"><span class="value">500+</span><span class="label">Units Delivered</span></div>
+          <div class="case-stat"><span class="value">IP67</span><span class="label">Rating</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="case-card">
+      <div class="case-image">
+        <div class="placeholder-icon">✦</div>
+        <span class="placeholder-text">Project Photography</span>
+      </div>
+      <div class="case-body">
+        <span class="case-sector">Industrial</span>
+        <h3>Mining Equipment Sub-Assemblies</h3>
+        <p>High-volume production of precision sub-assemblies for underground mining equipment, requiring structural integrity under sustained vibration and impact loads.</p>
+        <div class="case-stats">
+          <div class="case-stat"><span class="value">3,000+</span><span class="label">Components</span></div>
+          <div class="case-stat"><span class="value">12 Mo</span><span class="label">Contract</span></div>
+          <div class="case-stat"><span class="value">100%</span><span class="label">QA Pass</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="testimonials-header">
+    <span class="section-label">Client Testimonials</span>
+    <h2>What Our Partners Say</h2>
+    <div class="gold-rule" style="margin: 16px auto 20px;"></div>
+  </div>
+
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <span class="quote-mark">"</span>
+      <blockquote>RH Freeman's attention to detail is exceptional. They've consistently delivered complex fabrications on time and to spec, even under tight deadlines.</blockquote>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">JM</div>
+        <div class="testimonial-info">
+          <span class="name">Client Name</span>
+          <span class="role">Engineering Director</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <span class="quote-mark">"</span>
+      <blockquote>We switched to RH Freeman three years ago and haven't looked back. Their quality control processes give us confidence in every batch we receive.</blockquote>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">SK</div>
+        <div class="testimonial-info">
+          <span class="name">Client Name</span>
+          <span class="role">Procurement Manager</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <span class="quote-mark">"</span>
+      <blockquote>Their team understood our requirements from day one. The prototyping support alone saved us weeks in our development cycle.</blockquote>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">DR</div>
+        <div class="testimonial-info">
+          <span class="name">Client Name</span>
+          <span class="role">Technical Lead</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE TEAM -->
+<section class="team" id="team">
+  <div class="team-header">
+    <span class="section-label">About Us</span>
+    <h2>The Team Behind the Craft</h2>
+    <div class="gold-rule" style="margin: 16px auto 20px;"></div>
+    <p>Led by a new generation of owners with deep roots in precision engineering, our team combines decades of workshop expertise with a forward-looking vision for South African manufacturing.</p>
+  </div>
+
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-photo"><div class="team-photo-placeholder"><div class="placeholder-icon">GV</div></div></div>
+      <h4>Gerhard van Staden</h4>
+      <span class="team-role">Managing Director</span>
+      <p class="team-bio">Driving the strategic direction of RH Freeman since the 2025 management buyout, with a focus on operational excellence and growth.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-photo"><div class="team-photo-placeholder"><div class="placeholder-icon">CV</div></div></div>
+      <h4>Chantelle van Staden</h4>
+      <span class="team-role">Director</span>
+      <p class="team-bio">Overseeing brand development and client relationships, ensuring RH Freeman's heritage values translate into every customer interaction.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-photo"><div class="team-photo-placeholder"><div class="placeholder-icon">SM</div></div></div>
+      <h4>Sam Moffat</h4>
+      <span class="team-role">Operations</span>
+      <p class="team-bio">Managing day-to-day production and ensuring quality standards are maintained across every project that leaves our workshop floor.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-photo"><div class="team-photo-placeholder"><div class="placeholder-icon">RF</div></div></div>
+      <h4>Ro Fernando</h4>
+      <span class="team-role">Engineering</span>
+      <p class="team-bio">Bringing technical expertise and engineering leadership to complex fabrication challenges, from design through to delivery.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <span class="cta-icon">✦</span>
+  <h2>Commence Your Project</h2>
+  <p>We invite you to discuss your technical requirements. Our engineers are ready to review your blueprints.</p>
+  <a href="#" class="btn-primary">Submit Inquiry</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <span class="initials">R H</span>
+        <span class="rule"></span>
+        <span class="name">Freeman</span>
+        <span class="rule"></span>
+        <span class="est">Est. 1946</span>
+      </div>
+      <p>Precision sheet metal fabrication and engineering. Proudly South African since 1946.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#">Heritage</a></li>
+        <li><a href="#">Capabilities</a></li>
+        <li><a href="#">Sectors</a></li>
+        <li><a href="#">News</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">info@rhfreeman.co.za</a></li>
+        <li><a href="#">Johannesburg, South Africa</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Certifications</h4>
+      <div class="footer-certs">
+        <span class="cert-badge">ISO 9001</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 RH Freeman. All rights reserved.</p>
+    <p>Privacy Policy &nbsp;&middot;&nbsp; Terms of Service</p>
+  </div>
+</footer>
+
+</body>
+</html>

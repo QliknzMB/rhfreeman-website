@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RH Freeman — Website Design Proposals</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Josefin+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Josefin Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #F7F3EC;
+    color: #1E1D1A;
+    padding: 40px 20px;
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 48px;
+  }
+
+  .logo .initials {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: #B89A5A;
+  }
+
+  .logo .rule {
+    width: 60px;
+    height: 1.5px;
+    background: #B89A5A;
+    margin: 4px 0;
+  }
+
+  .logo .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #181D38;
+  }
+
+  .logo .est {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: #B89A5A;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 8px;
+    color: #181D38;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    color: #8A857C;
+    text-align: center;
+    margin-bottom: 56px;
+    letter-spacing: 0.05em;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    max-width: 720px;
+    width: 100%;
+  }
+
+  .card {
+    position: relative;
+    border: 1px solid rgba(184,154,90,0.2);
+    overflow: hidden;
+    transition: all 0.4s ease;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card:hover {
+    border-color: #B89A5A;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  }
+
+  .card-preview {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .card-preview.dark {
+    background: #181D38;
+  }
+
+  .card-preview.light {
+    background: #F7F3EC;
+    border-bottom: 1px solid rgba(184,154,90,0.15);
+  }
+
+  .card-preview .preview-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-align: center;
+  }
+
+  .card-preview.dark .preview-text { color: #F5F0E8; }
+  .card-preview.light .preview-text { color: #181D38; }
+
+  .card-preview .preview-accent {
+    font-style: italic;
+    color: #C4A265;
+  }
+
+  .card-body {
+    padding: 28px 24px;
+    background: white;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .card-body h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #181D38;
+  }
+
+  .card-body p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #8A857C;
+    flex-grow: 1;
+  }
+
+  .card-body .view-link {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #B89A5A;
+    margin-top: 12px;
+  }
+
+  .footer-note {
+    margin-top: 56px;
+    text-align: center;
+    font-size: 12px;
+    color: #8A857C;
+    max-width: 480px;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 600px) {
+    .cards { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="logo">
+  <span class="initials">R H</span>
+  <span class="rule"></span>
+  <span class="name">Freeman</span>
+  <span class="rule"></span>
+  <span class="est">Est. 1946</span>
+</div>
+
+<h1>Website Design Proposals</h1>
+<p class="subtitle">Heritage theme — two colour variations for review</p>
+
+<div class="cards">
+  <a href="rhf-dark.html" class="card">
+    <div class="card-preview dark">
+      <span class="preview-text">Where Precision Becomes <span class="preview-accent">a Tradition</span></span>
+    </div>
+    <div class="card-body">
+      <h3>Dark Theme</h3>
+      <p>Deep navy with gold accents. Immersive, premium feel with warm workshop atmosphere.</p>
+      <span class="view-link">View Design →</span>
+    </div>
+  </a>
+
+  <a href="rhf-light.html" class="card">
+    <div class="card-preview light">
+      <span class="preview-text">Where Precision Becomes <span class="preview-accent">a Tradition</span></span>
+    </div>
+    <div class="card-body">
+      <h3>Light Theme</h3>
+      <p>Cream and linen with navy accents. Clean, refined letterhead quality with warm undertones.</p>
+      <span class="view-link">View Design →</span>
+    </div>
+  </a>
+</div>
+
+<p class="footer-note">
+  These are design proposals for the RH Freeman website. All placeholder content (images, testimonials, case studies, team photos) will be replaced with real content. Click either card to view the full page design.
+</p>
+
+</body>
+</html>
