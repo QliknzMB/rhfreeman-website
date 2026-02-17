@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RH Freeman — Website Design Proposals</title>
+<title>RH Freeman — Project Portal</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Josefin+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -11,24 +11,125 @@
   body {
     font-family: 'Josefin Sans', sans-serif;
     min-height: 100vh;
+    background: #F7F3EC;
+    color: #1E1D1A;
+  }
+
+  /* ===== PASSWORD SCREEN ===== */
+  .password-screen {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #F7F3EC;
-    color: #1E1D1A;
     padding: 40px 20px;
   }
 
-  .logo {
+  .password-screen.hidden { display: none; }
+
+  .password-box {
+    text-align: center;
+    max-width: 380px;
+    width: 100%;
+  }
+
+  .password-box .lock-icon {
+    font-size: 28px;
+    color: #B89A5A;
+    margin-bottom: 24px;
+  }
+
+  .password-box h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: #181D38;
+    margin-bottom: 8px;
+  }
+
+  .password-box .pw-sub {
+    font-size: 13px;
+    color: #8A857C;
+    margin-bottom: 32px;
+  }
+
+  .pw-input-row {
+    display: flex;
+    gap: 0;
+    width: 100%;
+  }
+
+  .pw-input-row input {
+    flex: 1;
+    padding: 14px 18px;
+    border: 1px solid rgba(184,154,90,0.3);
+    border-right: none;
+    background: white;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    outline: none;
+    color: #181D38;
+  }
+
+  .pw-input-row input:focus {
+    border-color: #B89A5A;
+  }
+
+  .pw-input-row button {
+    padding: 14px 24px;
+    background: #181D38;
+    color: #F5F0E8;
+    border: 1px solid #181D38;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .pw-input-row button:hover {
+    background: #B89A5A;
+    border-color: #B89A5A;
+  }
+
+  .pw-error {
+    color: #c44;
+    font-size: 12px;
+    margin-top: 12px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .pw-error.show { opacity: 1; }
+
+  /* ===== PORTAL ===== */
+  .portal {
+    display: none;
+    padding: 40px 20px 80px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .portal.visible { display: block; }
+
+  /* Header */
+  .portal-header {
+    text-align: center;
+    margin-bottom: 56px;
+    padding-top: 20px;
+  }
+
+  .portal-logo {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 4px;
-    margin-bottom: 48px;
+    margin-bottom: 32px;
   }
 
-  .logo .initials {
+  .portal-logo .initials {
     font-family: 'Cormorant Garamond', serif;
     font-size: 12px;
     letter-spacing: 0.5em;
@@ -36,14 +137,14 @@
     color: #B89A5A;
   }
 
-  .logo .rule {
+  .portal-logo .rule {
     width: 60px;
     height: 1.5px;
     background: #B89A5A;
     margin: 4px 0;
   }
 
-  .logo .name {
+  .portal-logo .name {
     font-family: 'Cormorant Garamond', serif;
     font-size: 32px;
     font-weight: 500;
@@ -52,7 +153,7 @@
     color: #181D38;
   }
 
-  .logo .est {
+  .portal-logo .est {
     font-family: 'Cormorant Garamond', serif;
     font-size: 11px;
     letter-spacing: 0.4em;
@@ -60,29 +161,61 @@
     color: #B89A5A;
   }
 
-  h1 {
+  .portal-header h1 {
     font-family: 'Cormorant Garamond', serif;
     font-size: 28px;
     font-weight: 400;
-    text-align: center;
-    margin-bottom: 8px;
     color: #181D38;
+    margin-bottom: 8px;
   }
 
-  .subtitle {
+  .portal-header .subtitle {
     font-size: 13px;
     color: #8A857C;
-    text-align: center;
-    margin-bottom: 56px;
     letter-spacing: 0.05em;
   }
 
-  .cards {
+  .portal-header .dt-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    padding: 5px 14px;
+    background: rgba(255,107,43,0.06);
+    border: 1px solid rgba(255,107,43,0.15);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #ff6b2b;
+  }
+
+  .dt-badge .dot {
+    width: 6px;
+    height: 6px;
+    background: #ff6b2b;
+    border-radius: 50%;
+  }
+
+  /* Section labels */
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #B89A5A;
+    margin-bottom: 16px;
+  }
+
+  /* Card grid */
+  .card-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    max-width: 720px;
-    width: 100%;
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+
+  .card-grid.single {
+    grid-template-columns: 1fr;
   }
 
   .card {
@@ -93,132 +226,327 @@
     text-decoration: none;
     display: flex;
     flex-direction: column;
+    background: white;
   }
 
   .card:hover {
     border-color: #B89A5A;
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.06);
   }
 
   .card-preview {
-    height: 200px;
+    height: 160px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
   }
 
-  .card-preview.dark {
-    background: #181D38;
-  }
-
-  .card-preview.light {
-    background: #F7F3EC;
-    border-bottom: 1px solid rgba(184,154,90,0.15);
-  }
+  .card-preview.dark { background: #181D38; }
+  .card-preview.light { background: #F7F3EC; border-bottom: 1px solid rgba(184,154,90,0.1); }
+  .card-preview.logos { background: linear-gradient(135deg, #181D38 50%, #F7F3EC 50%); }
+  .card-preview.plan { background: #181D38; }
 
   .card-preview .preview-text {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 400;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.12em;
     text-align: center;
   }
 
   .card-preview.dark .preview-text { color: #F5F0E8; }
   .card-preview.light .preview-text { color: #181D38; }
+  .card-preview.logos .preview-text { color: #F5F0E8; text-shadow: 0 1px 4px rgba(0,0,0,0.3); }
+  .card-preview.plan .preview-text { color: #C4A265; }
 
-  .card-preview .preview-accent {
+  .preview-accent {
     font-style: italic;
     color: #C4A265;
   }
 
   .card-body {
-    padding: 28px 24px;
-    background: white;
+    padding: 24px 20px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
   }
 
   .card-body h3 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
     color: #181D38;
   }
 
   .card-body p {
-    font-size: 13px;
+    font-size: 12px;
     line-height: 1.6;
     color: #8A857C;
     flex-grow: 1;
   }
 
   .card-body .view-link {
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: #B89A5A;
-    margin-top: 12px;
+    margin-top: 8px;
   }
 
-  .footer-note {
-    margin-top: 56px;
-    text-align: center;
+  .card-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    background: rgba(196,162,101,0.15);
+    color: #B89A5A;
+    font-weight: 500;
+  }
+
+  .card-badge.updated {
+    background: rgba(76,175,80,0.12);
+    color: #4CAF50;
+  }
+
+  /* What we need section */
+  .needs-section {
+    margin-bottom: 48px;
+  }
+
+  .needs-box {
+    background: white;
+    border: 1px solid rgba(184,154,90,0.2);
+    padding: 32px;
+  }
+
+  .needs-box h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #181D38;
+    margin-bottom: 20px;
+  }
+
+  .needs-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 32px;
+  }
+
+  .needs-list li {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #4A4640;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .needs-list li::before {
+    content: '○';
+    position: absolute;
+    left: 0;
+    color: #B89A5A;
+    font-size: 10px;
+    top: 2px;
+  }
+
+  .needs-note {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(184,154,90,0.1);
     font-size: 12px;
     color: #8A857C;
-    max-width: 480px;
+    font-style: italic;
     line-height: 1.7;
   }
 
+  /* Footer */
+  .portal-footer {
+    text-align: center;
+    padding-top: 32px;
+    border-top: 1px solid rgba(184,154,90,0.15);
+  }
+
+  .portal-footer p {
+    font-size: 11px;
+    color: #8A857C;
+    line-height: 1.8;
+  }
+
+  .portal-footer a {
+    color: #ff6b2b;
+    text-decoration: none;
+  }
+
   @media (max-width: 600px) {
-    .cards { grid-template-columns: 1fr; }
+    .card-grid { grid-template-columns: 1fr; }
+    .needs-list { grid-template-columns: 1fr; }
+    .portal-logo .name { font-size: 26px; }
   }
 </style>
 </head>
 <body>
 
-<div class="logo">
-  <span class="initials">R H</span>
-  <span class="rule"></span>
-  <span class="name">Freeman</span>
-  <span class="rule"></span>
-  <span class="est">Est. 1946</span>
+<!-- PASSWORD SCREEN -->
+<div class="password-screen" id="pwScreen">
+  <div class="portal-logo">
+    <span class="initials">R H</span>
+    <span class="rule"></span>
+    <span class="name">Freeman</span>
+    <span class="rule"></span>
+    <span class="est">Est. 1946</span>
+  </div>
+  <div class="password-box">
+    <div class="lock-icon">◈</div>
+    <h2>Project Portal</h2>
+    <p class="pw-sub">Enter the access code to view project materials</p>
+    <div class="pw-input-row">
+      <input type="password" id="pwInput" placeholder="Access code" autocomplete="off" />
+      <button onclick="checkPassword()">Enter</button>
+    </div>
+    <p class="pw-error" id="pwError">Incorrect code. Please try again.</p>
+  </div>
 </div>
 
-<h1>Website Design Proposals</h1>
-<p class="subtitle">Heritage theme — two colour variations for review</p>
+<!-- PORTAL CONTENT -->
+<div class="portal" id="portal">
+  <div class="portal-header">
+    <div class="portal-logo">
+      <span class="initials">R H</span>
+      <span class="rule"></span>
+      <span class="name">Freeman</span>
+      <span class="rule"></span>
+      <span class="est">Est. 1946</span>
+    </div>
+    <h1>Website Project Portal</h1>
+    <p class="subtitle">Design proposals, logo concepts, and project plan for review</p>
+    <div class="dt-badge"><span class="dot"></span> Prepared by Data Tradies</div>
+  </div>
 
-<div class="cards">
-  <a href="rhf-dark.html" class="card">
-    <div class="card-preview dark">
-      <span class="preview-text">Where Precision Becomes <span class="preview-accent">a Tradition</span></span>
-    </div>
-    <div class="card-body">
-      <h3>Dark Theme</h3>
-      <p>Deep navy with gold accents. Immersive, premium feel with warm workshop atmosphere.</p>
-      <span class="view-link">View Design →</span>
-    </div>
-  </a>
+  <!-- WEBSITE DESIGNS -->
+  <div class="section-label">Website Design — Choose Your Theme</div>
+  <div class="card-grid">
+    <a href="rhf-dark.html" class="card">
+      <span class="card-badge updated">Updated</span>
+      <div class="card-preview dark">
+        <span class="preview-text">Where Precision Becomes<br><span class="preview-accent">a Tradition</span></span>
+      </div>
+      <div class="card-body">
+        <h3>Dark Theme</h3>
+        <p>Deep navy with gold accents. Premium, immersive feel. Real services, case studies, and testimonials integrated.</p>
+        <span class="view-link">View Full Page →</span>
+      </div>
+    </a>
+    <a href="rhf-light.html" class="card">
+      <span class="card-badge updated">Updated</span>
+      <div class="card-preview light">
+        <span class="preview-text">Where Precision Becomes<br><span class="preview-accent">a Tradition</span></span>
+      </div>
+      <div class="card-body">
+        <h3>Light Theme</h3>
+        <p>Cream and linen with navy accents. Clean, refined quality. Same real content across all sections.</p>
+        <span class="view-link">View Full Page →</span>
+      </div>
+    </a>
+  </div>
 
-  <a href="rhf-light.html" class="card">
-    <div class="card-preview light">
-      <span class="preview-text">Where Precision Becomes <span class="preview-accent">a Tradition</span></span>
+  <!-- LOGOS -->
+  <div class="section-label">Logo Concepts</div>
+  <div class="card-grid single">
+    <a href="rhf-logos.html" class="card" style="flex-direction: row;">
+      <div class="card-preview logos" style="width: 240px; min-height: 140px;">
+        <span class="preview-text" style="font-size: 16px;">8 Logo<br>Concepts</span>
+      </div>
+      <div class="card-body">
+        <h3>Logo Directions</h3>
+        <p>Eight concepts exploring heritage, modern, and industrial directions. Logos 1 and 2 (Classic Serif Lockup and Stacked Heritage) have been approved — see all options for reference.</p>
+        <span class="view-link">View All Logos →</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- PROJECT PLAN -->
+  <div class="section-label">Project Plan</div>
+  <div class="card-grid single">
+    <a href="rhf-plan.html" class="card" style="flex-direction: row;">
+      <div class="card-preview plan" style="width: 240px; min-height: 140px;">
+        <span class="preview-text" style="font-size: 14px;">Go-Live<br>Checklist</span>
+      </div>
+      <div class="card-body">
+        <h3>Website Go-Live Checklist</h3>
+        <p>Six-phase project plan covering design sign-off, content requirements, domain setup, build, testing, and post-launch. Includes email and domain strategy recommendation.</p>
+        <span class="view-link">View Project Plan →</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- WHAT WE NEED FROM YOU -->
+  <div class="needs-section">
+    <div class="section-label">What We Need From You</div>
+    <div class="needs-box">
+      <h3>To move forward, we need the following</h3>
+      <ul class="needs-list">
+        <li>Choose preferred theme (dark or light)</li>
+        <li>Workshop / factory floor photos (5–10, phone photos fine)</li>
+        <li>Team headshots (Gerhard, Chantelle, Sam, Ro)</li>
+        <li>Product or sample photos (5–10)</li>
+        <li>Building exterior photo</li>
+        <li>Client logos with permission (Gallagher, Designbrand, RPS?)</li>
+        <li>Confirm testimonials are still current and approved</li>
+        <li>Review team bios and titles</li>
+        <li>Confirm legal entity name for footer</li>
+        <li>Any other content changes or additions</li>
+      </ul>
+      <p class="needs-note">
+        Photography is the main blocker — everything else is ready to go. Phone photos are absolutely fine for Phase 1. We can swap in professional photography later if needed.
+      </p>
     </div>
-    <div class="card-body">
-      <h3>Light Theme</h3>
-      <p>Cream and linen with navy accents. Clean, refined letterhead quality with warm undertones.</p>
-      <span class="view-link">View Design →</span>
-    </div>
-  </a>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="portal-footer">
+    <p>
+      Prepared by Marnus Boshoff — <a href="https://datatradies.co.nz" target="_blank">Data Tradies</a><br>
+      Questions? <a href="mailto:info@datatradies.co.nz">info@datatradies.co.nz</a> · <a href="tel:+6421596641">021 596 641</a>
+    </p>
+  </div>
 </div>
 
-<p class="footer-note">
-  These are design proposals for the RH Freeman website. All placeholder content (images, testimonials, case studies, team photos) will be replaced with real content. Click either card to view the full page design.
-</p>
+<script>
+  // Simple client-side password — not security, just a gate
+  const CODE = 'dragon2025street';
+
+  function checkPassword() {
+    const input = document.getElementById('pwInput').value;
+    if (input.toLowerCase() === CODE) {
+      document.getElementById('pwScreen').classList.add('hidden');
+      document.getElementById('portal').classList.add('visible');
+      sessionStorage.setItem('rhf_auth', '1');
+    } else {
+      document.getElementById('pwError').classList.add('show');
+      document.getElementById('pwInput').value = '';
+      document.getElementById('pwInput').focus();
+    }
+  }
+
+  // Enter key
+  document.getElementById('pwInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+
+  // Check session
+  if (sessionStorage.getItem('rhf_auth') === '1') {
+    document.getElementById('pwScreen').classList.add('hidden');
+    document.getElementById('portal').classList.add('visible');
+  }
+</script>
 
 </body>
 </html>

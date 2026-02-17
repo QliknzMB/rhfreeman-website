@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RH Freeman — Logo Concepts</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=IBM+Plex+Mono:wght@300;400;500&family=Playfair+Display:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Archivo:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #131931;
+  --navy-mid: #1c2340;
+  --navy-light: #2a3358;
+  --gold: #a08e4e;
+  --gold-bright: #bda966;
+  --gold-deep: #8a7a3e;
+  --gold-pale: #d4c899;
+  --steel: #5a6078;
+  --silver: #9298ae;
+  --cream: #f5f3ee;
+  --warm: #faf9f6;
+  --pure: #ffffff;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--cream); color: var(--navy); }
+
+.page-header { background: var(--navy); padding: 48px; text-align: center; }
+.page-header h1 { font-family: 'DM Sans', sans-serif; font-size: 1.5rem; font-weight: 600; color: var(--pure); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+.page-header p { font-size: 0.9rem; color: var(--silver); }
+.page-header .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,107,43,0.1); border: 1px solid rgba(255,107,43,0.2); color: #ff6b2b; font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; padding: 4px 14px; border-radius: 100px; margin-top: 16px; letter-spacing: 0.08em; text-transform: uppercase; }
+.badge-dot { width: 6px; height: 6px; background: #ff6b2b; border-radius: 50%; }
+
+.section { padding: 64px 48px; border-bottom: 1px solid rgba(19,25,49,0.06); }
+.section:last-child { border-bottom: none; }
+.section-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.section-title { font-size: 1.3rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.section-desc { font-size: 0.85rem; color: var(--steel); margin-bottom: 48px; line-height: 1.6; max-width: 600px; }
+
+.logos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 32px; max-width: 1200px; margin: 0 auto; }
+.logo-card { background: var(--pure); border: 1px solid rgba(19,25,49,0.06); border-radius: 12px; overflow: hidden; transition: all 0.3s; }
+.logo-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(19,25,49,0.08); }
+.logo-preview { height: 200px; display: flex; align-items: center; justify-content: center; padding: 32px; position: relative; }
+.logo-preview.on-light { background: var(--pure); }
+.logo-preview.on-dark { background: var(--navy); }
+.logo-preview.on-cream { background: var(--cream); }
+.logo-preview.on-gold { background: var(--gold); }
+.logo-info { padding: 20px 24px; border-top: 1px solid rgba(19,25,49,0.06); }
+.logo-name { font-weight: 700; font-size: 0.95rem; color: var(--navy); margin-bottom: 4px; }
+.logo-rationale { font-size: 0.8rem; color: var(--steel); line-height: 1.5; }
+.logo-tags { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+.logo-tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.06em; text-transform: uppercase; background: var(--cream); color: var(--steel); padding: 3px 10px; border-radius: 100px; }
+
+/* Colour usage section */
+.colour-row { display: flex; gap: 32px; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; }
+.colour-demo { flex: 1; min-width: 280px; border-radius: 12px; overflow: hidden; }
+.colour-demo-preview { height: 160px; display: flex; align-items: center; justify-content: center; padding: 24px; }
+.colour-demo-preview.bg-navy { background: var(--navy); }
+.colour-demo-preview.bg-white { background: var(--pure); border: 1px solid rgba(19,25,49,0.06); border-bottom: none; border-radius: 12px 12px 0 0; }
+.colour-demo-preview.bg-gold { background: var(--gold); }
+.colour-demo-label { padding: 12px 16px; background: var(--pure); border: 1px solid rgba(19,25,49,0.06); border-radius: 0 0 12px 12px; font-size: 0.75rem; color: var(--steel); text-align: center; }
+
+.notes { max-width: 1200px; margin: 0 auto; background: var(--pure); border: 1px solid rgba(19,25,49,0.06); border-radius: 12px; padding: 32px; }
+.notes h3 { font-size: 1rem; font-weight: 700; margin-bottom: 12px; }
+.notes p { font-size: 0.85rem; color: var(--steel); line-height: 1.7; margin-bottom: 8px; }
+
+.spec-banner{position:fixed;bottom:0;left:0;right:0;background:var(--navy);border-top:2px solid #ff6b2b;padding:10px 24px;z-index:9999;display:flex;align-items:center;justify-content:center;gap:10px}
+.spec-text{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--silver)}
+.spec-text strong{color:#ff6b2b}
+</style>
+</head>
+<body>
+
+<div class="spec-banner"><span class="badge-dot" style="width:8px;height:8px;background:#ff6b2b;border-radius:50;animation:none"></span><span class="spec-text"><strong>DATA TRADIES</strong> — Logo concepts for RH Freeman & Co Ltd — For discussion</span></div>
+
+<div class="page-header">
+<h1>RH Freeman — Logo Concepts</h1>
+<p>Eight directions exploring how the brand could evolve while staying true to its heritage</p>
+<div class="badge"><span class="badge-dot"></span>Prepared by Data Tradies</div>
+</div>
+
+<!-- === CONCEPT 1: HERITAGE SERIF === -->
+<div class="section">
+<div class="section-label">Heritage Direction</div>
+<div class="section-title">Concepts 1–3: Established, refined, built to last</div>
+<div class="section-desc">These lean into Freeman's 78-year history. Serif typography and restrained layouts that say "we've been doing this longer than anyone."</div>
+
+<div class="logos-grid">
+
+<!-- Logo 1: Classic Serif Lockup -->
+<div class="logo-card">
+<div class="logo-preview on-dark">
+<svg width="280" height="56" viewBox="0 0 280 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Navy square mark -->
+<rect x="0" y="4" width="48" height="48" rx="2" fill="#2a3358" stroke="#a08e4e" stroke-width="1"/>
+<text x="24" y="36" text-anchor="middle" font-family="'DM Sans', sans-serif" font-weight="700" font-size="16" fill="#ffffff" letter-spacing="1.5">RHF</text>
+<!-- Divider line -->
+<line x1="62" y1="12" x2="62" y2="44" stroke="#a08e4e" stroke-width="0.75" opacity="0.5"/>
+<!-- Text -->
+<text x="76" y="26" font-family="'Cormorant Garamond', Georgia, serif" font-weight="400" font-size="11" fill="#9298ae" letter-spacing="2">RH</text>
+<text x="100" y="26" font-family="'Cormorant Garamond', Georgia, serif" font-weight="600" font-size="15" fill="#ffffff" letter-spacing="3">FREEMAN</text>
+<text x="76" y="43" font-family="'IBM Plex Mono', monospace" font-weight="400" font-size="7" fill="#5a6078" letter-spacing="2.5">PRECISION SHEET METAL</text>
+</svg>
+</div>
+<div class="logo-info">
+<div class="logo-name">1. Classic Serif Lockup</div>
+<div class="logo-rationale">Cormorant Garamond headings with the existing RHF monogram. Vertical gold divider creates a traditional heraldic structure. The tagline grounds the brand in what they do.</div>
+<div class="logo-tags"><span class="logo-tag">Heritage</span><span class="logo-tag">Concept A</span></div>
+</div>
+</div>
+
+<!-- Logo 2: Stacked Heritage -->
+<div class="logo-card">
+<div class="logo-preview on-light">
+<svg width="200" height="90" viewBox="0 0 200 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Gold line top -->
+<line x1="60" y1="2" x2="140" y2="2" stroke="#a08e4e" stroke-width="1"/>
+<!-- Est text -->
+<text x="100" y="17" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-weight="400" font-size="7" fill="#a08e4e" letter-spacing="3">EST. 1946</text>
+<!-- Main name -->
+<text x="100" y="42" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-weight="700" font-size="28" fill="#131931" letter-spacing="5">FREEMAN</text>
+<!-- RH prefix -->
+<text x="100" y="58" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-weight="400" font-size="12" fill="#9298ae" letter-spacing="6">R H</text>
+<!-- Gold line bottom -->
+<line x1="60" y1="68" x2="140" y2="68" stroke="#a08e4e" stroke-width="1"/>
+<!-- Tagline -->
+<text x="100" y="82" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-weight="400" font-size="6" fill="#5a6078" letter-spacing="2.5">SHEET METAL FABRICATION &amp; ENGINEERING</text>
+</svg>
+</div>
+<div class="logo-info">
+<div class="logo-name">2. Stacked Heritage</div>
+<div class="logo-rationale">Centred, symmetrical, almost like a wine label or premium brand stamp. The horizontal gold rules frame the name with quiet authority. Strong on letterheads and signage.</div>
+<div class="logo-tags"><span class="logo-tag">Heritage</span><span class="logo-tag">Signage</span></div>
+</div>
+</div>
+
+<!-- Logo 3: Monogram & Wordmark -->
+<div class="logo-card">
+<div class="logo-preview on-cream">
+<svg width="260" height="60" viewBox="0 0 260 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Large monogram -->
+<rect x="0" y="2" width="56" height="56" rx="3" fill="#131931"/>
+<text x="28" y="24" text-anchor="middle" font-family="'Playfair Display', serif" font-weight="700" font-size="12" fill="#a08e4e" letter-spacing="1">RH</text>
+<line x1="12" y1="30" x2="44" y2="30" stroke="#a08e4e" stroke-width="0.5" opacity="0.4"/>
+<text x="28" y="45" text-anchor="middle" font-family="'Playfair Display', serif" font-weight="700" font-size="14" fill="#ffffff" letter-spacing="0.5">F</text>
+<!-- Wordmark -->
+<text x="76" y="28" font-family="'Playfair Display', serif" font-weight="400" font-size="10" fill="#9298ae" letter-spacing="1.5">RH</text>
+<text x="100" y="28" font-family="'Playfair Display', serif" font-weight="700" font-size="14" fill="#131931" letter-spacing="4">FREEMAN</text>
+<text x="76" y="44" font-family="'DM Sans', sans-serif" font-weight="400" font-size="8" fill="#5a6078" letter-spacing="0.5">Precision Sheet Metal &amp; Engineering</text>
+</svg>
+</div>
+<div class="logo-info">
+<div class="logo-name">3. Monogram & Wordmark</div>
+<div class="logo-rationale">The monogram splits RH/F across a gold divider inside a navy block — creating a crest-like mark. Works at any size: the monogram alone on uniforms, favicon; full lockup on the website.</div>
+<div class="logo-tags"><span class="logo-tag">Heritage</span><span class="logo-tag">Versatile</span></div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- === CONCEPT 2: INDUSTRIAL === -->
+<div class="section">
+<div class="section-label">Industrial Direction</div>
+<div class="section-title">Concepts 4–5: Bold, direct, factory-floor confidence</div>
+<div class="section-desc">Oversized display type, sharp edges, zero decoration. These say "we build things" without apology.</div>
+
+<div class="logos-grid">
+
+<!-- Logo 4: Industrial Block -->
+<div class="logo-card">
+<div class="logo-preview on-dark">
+<svg width="300" height="56" viewBox="0 0 300 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Block mark -->
+<rect x="0" y="4" width="48" height="48" fill="#a08e4e"/>
+<text x="24" y="36" text-anchor="middle" font-family="'Bebas Neue', Impact, sans-serif" font-weight="400" font-size="24" fill="#131931" letter-spacing="2">RHF</text>
+<!-- Name -->
+<text x="64" y="34" font-family="'Bebas Neue', Impact, sans-serif" font-weight="400" font-size="32" fill="#ffffff" letter-spacing="4">RH FREEMAN</text>
+<!-- Underline -->
+<line x1="64" y1="42" x2="265" y2="42" stroke="#a08e4e" stroke-width="2"/>
+<text x="64" y="52" font-family="'IBM Plex Mono', monospace" font-weight="400" font-size="6.5" fill="#5a6078" letter-spacing="3">PRECISION SHEET METAL  ·  WELLINGTON NZ</text>
+</svg>
+</div>
+<div class="logo-info">
+<div class="logo-name">4. Industrial Block</div>
+<div class="logo-rationale">Gold mark reversed into Bebas Neue display type. The thick gold underline is structural — like a steel beam. Monospace tagline with bullet separator. No subtlety, all confidence.</div>
+<div class="logo-tags"><span class="logo-tag">Industrial</span><span class="logo-tag">Concept B</span></div>
+</div>
+</div>
+
+<!-- Logo 5: Stencil Type -->
+<div class="logo-card">
+<div class="logo-preview on-light">
+<svg width="280" height="60" viewBox="0 0 280 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Heavy type -->
+<text x="0" y="38" font-family="'Archivo', sans-serif" font-weight="900" font-size="36" fill="#131931" letter-spacing="2">FREEMAN</text>
+<!-- RH in gold -->
+<text x="0" y="15" font-family="'Archivo', sans-serif" font-weight="500" font-size="13" fill="#a08e4e" letter-spacing="5">RH</text>
+<!-- Dot separator and tagline on same line as RH -->
+<text x="42" y="15" font-family="'IBM Plex Mono', monospace" font-weight="400" font-size="7.5" fill="#9298ae" letter-spacing="1.5">·  PRECISION SHEET METAL</text>
+<!-- Gold accent block -->
+<rect x="0" y="48" width="32" height="3" fill="#a08e4e"/>
+</svg>
+</div>
+<div class="logo-info">
+<div class="logo-name">5. Bold Sans-Serif</div>
+<div class="logo-rationale">Archivo Black at max weight — a heavyweight industrial sans-serif. "FREEMAN" dominates, RH sits quietly above in gold. The gold accent bar is a subtle nod to raw material. Clean, powerful, modern.</div>
+<div class="logo-tags"><span class="logo-tag">Industrial</span><span class="logo-tag">Modern</span></div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- === CONCEPT 3: CONTEMPORARY === -->
+<div class="section">
+<div class="section-label">Contemporary Direction</div>
+<div class="section-title">Concepts 6–8: Clean, approachable, modern professional</div>
+<div class="section-desc">Rounded forms, balanced weight, warm tones. These position Freeman as progressive and easy to work with while maintaining credibility.</div>
+
+<div class="logos-grid">
+
+<!-- Logo 6: Rounded Mark -->
+<div class="logo-card">
+<div class="logo-preview on-light">
+<svg width="260" height="56" viewBox="0 0 260 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Rounded square mark -->
+<rect x="0" y="4" width="48" height="48" rx="10" fill="#131931"/>
+<text x="24" y="35" text-anchor="middle" font-family="'Outfit', sans-serif" font-weight="700" font-size="15" fill="#ffffff" letter-spacing="1">RHF</text>
+<!-- Wordmark -->
+<text x="64" y="24" font-family="'Outfit', sans-serif" font-weight="300" font-size="12" fill="#9298ae" letter-spacing="0.5">RH</text>
+<text x="86" y="24" font-family="'Outfit', sans-serif" font-weight="700" font-size="14" fill="#131931" letter-spacing="1.5">Freeman</text>
+<text x="64" y="42" font-family="'Outfit', sans-serif" font-weight="400" font-size="8.5" fill="#5a6078" letter-spacing="0.3">Precision Sheet Metal &amp; Engineering</text>
+</svg>
+</div>
+<div class="logo-info">
+<div class="logo-name">6. Rounded Contemporary</div>
+<div class="logo-rationale">Outfit typeface is geometric and modern but warm. The rounded square mark (radius-10) feels approachable — more tech company than traditional fabrication. Mixed case "Freeman" softens the brand.</div>
+<div class="logo-tags"><span class="logo-tag">Contemporary</span><span class="logo-tag">Concept C</span></div>
+</div>
+</div>
+
+<!-- Logo 7: Pill Badge -->
+<div class="logo-card">
+<div class="logo-preview on-dark">
+<svg width="240" height="48" viewBox="0 0 240 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Pill container -->
+<rect x="0" y="4" width="240" height="40" rx="20" fill="none" stroke="#a08e4e" stroke-width="1"/>
+<!-- Inner mark -->
+<circle cx="28" cy="24" r="14" fill="#a08e4e"/>
+<text x="28" y="28" text-anchor="middle" font-family="'Outfit', sans-serif" font-weight="800" font-size="10" fill="#131931" letter-spacing="0.5">RHF</text>
+<!-- Text -->
+<text x="54" y="21" font-family="'Outfit', sans-serif" font-weight="300" font-size="10" fill="#9298ae" letter-spacing="0.5">RH</text>
+<text x="74" y="21" font-family="'Outfit', sans-serif" font-weight="700" font-size="12" fill="#ffffff" letter-spacing="2">FREEMAN</text>
+<text x="54" y="33" font-family="'Outfit', sans-serif" font-weight="400" font-size="6.5" fill="#5a6078" letter-spacing="1.5">PRECISION SHEET METAL</text>
+</svg>
+</div>
+<div class="logo-info">
+<div class="logo-name">7. Pill Badge</div>
+<div class="logo-rationale">Everything contained in a pill-shaped border — mirrors the floating nav in Concept C. The gold circle mark with dark initials creates a coin/badge effect. Feels cohesive and contained.</div>
+<div class="logo-tags"><span class="logo-tag">Contemporary</span><span class="logo-tag">Contained</span></div>
+</div>
+</div>
+
+<!-- Logo 8: Minimal Split -->
+<div class="logo-card">
+<div class="logo-preview on-cream">
+<svg width="220" height="52" viewBox="0 0 220 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Just type, no mark -->
+<text x="0" y="32" font-family="'Outfit', sans-serif" font-weight="800" font-size="28" fill="#131931" letter-spacing="-0.5">rh</text>
+<text x="38" y="32" font-family="'Outfit', sans-serif" font-weight="800" font-size="28" fill="#a08e4e" letter-spacing="-0.5">freeman</text>
+<text x="0" y="46" font-family="'IBM Plex Mono', monospace" font-weight="400" font-size="7" fill="#9298ae" letter-spacing="2">SHEET METAL  ·  ENGINEERING  ·  SINCE 1946</text>
+</svg>
+</div>
+<div class="logo-info">
+<div class="logo-name">8. Minimal Wordmark</div>
+<div class="logo-rationale">No icon, no mark — just the name does the work. Lowercase "rh" in navy, "freeman" in gold. The weight difference and colour split create the visual structure. Ultra-clean, ultra-modern. Monospace tagline anchors it.</div>
+<div class="logo-tags"><span class="logo-tag">Contemporary</span><span class="logo-tag">Minimal</span></div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- === COLOUR USAGE === -->
+<div class="section">
+<div class="section-label">Colour Application</div>
+<div class="section-title">How they work across backgrounds</div>
+<div class="section-desc">Every logo needs to work on navy, white, and gold. Here's Concept 3 (the most versatile) shown across all three.</div>
+
+<div class="colour-row">
+<div class="colour-demo">
+<div class="colour-demo-preview bg-navy">
+<svg width="220" height="50" viewBox="0 0 260 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="4" width="48" height="48" rx="3" fill="#2a3358"/>
+<text x="24" y="24" text-anchor="middle" font-family="'Playfair Display', serif" font-weight="700" font-size="12" fill="#a08e4e" letter-spacing="1">RH</text>
+<line x1="12" y1="30" x2="44" y2="30" stroke="#a08e4e" stroke-width="0.5" opacity="0.4"/>
+<text x="24" y="45" text-anchor="middle" font-family="'Playfair Display', serif" font-weight="700" font-size="14" fill="#ffffff" letter-spacing="0.5">F</text>
+<text x="64" y="28" font-family="'Playfair Display', serif" font-weight="400" font-size="10" fill="#9298ae" letter-spacing="1.5">RH</text>
+<text x="88" y="28" font-family="'Playfair Display', serif" font-weight="700" font-size="14" fill="#ffffff" letter-spacing="4">FREEMAN</text>
+<text x="64" y="44" font-family="'DM Sans', sans-serif" font-weight="400" font-size="8" fill="#5a6078" letter-spacing="0.5">Precision Sheet Metal &amp; Engineering</text>
+</svg>
+</div>
+<div class="colour-demo-label">On Navy — Primary website use</div>
+</div>
+<div class="colour-demo">
+<div class="colour-demo-preview bg-white">
+<svg width="220" height="50" viewBox="0 0 260 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="4" width="48" height="48" rx="3" fill="#131931"/>
+<text x="24" y="24" text-anchor="middle" font-family="'Playfair Display', serif" font-weight="700" font-size="12" fill="#a08e4e" letter-spacing="1">RH</text>
+<line x1="12" y1="30" x2="44" y2="30" stroke="#a08e4e" stroke-width="0.5" opacity="0.4"/>
+<text x="24" y="45" text-anchor="middle" font-family="'Playfair Display', serif" font-weight="700" font-size="14" fill="#ffffff" letter-spacing="0.5">F</text>
+<text x="64" y="28" font-family="'Playfair Display', serif" font-weight="400" font-size="10" fill="#9298ae" letter-spacing="1.5">RH</text>
+<text x="88" y="28" font-family="'Playfair Display', serif" font-weight="700" font-size="14" fill="#131931" letter-spacing="4">FREEMAN</text>
+<text x="64" y="44" font-family="'DM Sans', sans-serif" font-weight="400" font-size="8" fill="#5a6078" letter-spacing="0.5">Precision Sheet Metal &amp; Engineering</text>
+</svg>
+</div>
+<div class="colour-demo-label">On White — Print, documents, email</div>
+</div>
+<div class="colour-demo">
+<div class="colour-demo-preview bg-gold">
+<svg width="220" height="50" viewBox="0 0 260 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="4" width="48" height="48" rx="3" fill="#131931"/>
+<text x="24" y="24" text-anchor="middle" font-family="'Playfair Display', serif" font-weight="700" font-size="12" fill="#d4c899" letter-spacing="1">RH</text>
+<line x1="12" y1="30" x2="44" y2="30" stroke="#d4c899" stroke-width="0.5" opacity="0.4"/>
+<text x="24" y="45" text-anchor="middle" font-family="'Playfair Display', serif" font-weight="700" font-size="14" fill="#ffffff" letter-spacing="0.5">F</text>
+<text x="64" y="28" font-family="'Playfair Display', serif" font-weight="400" font-size="10" fill="#131931" letter-spacing="1.5" opacity="0.5">RH</text>
+<text x="88" y="28" font-family="'Playfair Display', serif" font-weight="700" font-size="14" fill="#131931" letter-spacing="4">FREEMAN</text>
+<text x="64" y="44" font-family="'DM Sans', sans-serif" font-weight="400" font-size="8" fill="#131931" opacity="0.5" letter-spacing="0.5">Precision Sheet Metal &amp; Engineering</text>
+</svg>
+</div>
+<div class="colour-demo-label">On Gold — Feature sections, signage</div>
+</div>
+</div>
+</div>
+
+<!-- === NOTES === -->
+<div class="section" style="padding-bottom:100px">
+<div class="notes">
+<h3>Notes for Discussion</h3>
+<p><strong>These are direction indicators, not final designs.</strong> Once a direction is chosen, the logo would be refined in detail — kerning, weight, proportions, and file formats for print, web, and embroidery.</p>
+<p><strong>The monogram matters.</strong> Every concept includes a standalone mark (the square/circle with RHF) that works as a favicon, hard hat sticker, uniform embroidery, or social media avatar.</p>
+<p><strong>Heritage vs. Modern isn't binary.</strong> The most effective approach might combine elements — say Concept 3's crest-style monogram with Concept 6's clean Outfit typeface. The goal is to find the right balance between "we've been here since 1946" and "we invest in modern capability."</p>
+<p><strong>The gold is doing a lot of work.</strong> It's what separates these from a generic engineering brand. Keeping it as the primary accent (rather than a secondary colour) is worth protecting in any final direction.</p>
+</div>
+</div>
+
+</body>
+</html>

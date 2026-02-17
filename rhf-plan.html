@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RH Freeman — Project Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Josefin+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Josefin Sans', sans-serif; background: #F7F3EC; color: #1E1D1A; padding: 40px 20px 80px; }
+
+  .container { max-width: 960px; margin: 0 auto; }
+
+  /* Header */
+  .plan-header { text-align: center; margin-bottom: 48px; padding-top: 20px; }
+  .plan-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 400; color: #181D38; margin-bottom: 8px; }
+  .plan-header .subtitle { font-size: 13px; color: #8A857C; letter-spacing: 0.05em; margin-bottom: 16px; }
+  .plan-header .meta { font-size: 11px; color: #8A857C; }
+  .plan-header .back-link { display: inline-block; margin-bottom: 24px; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #B89A5A; text-decoration: none; }
+  .plan-header .back-link:hover { color: #181D38; }
+
+  /* Legend */
+  .legend { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; padding: 16px; background: white; border: 1px solid rgba(184,154,90,0.15); }
+  .legend-item { font-size: 11px; color: #8A857C; display: flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .legend-dot.done { background: #4CAF50; }
+  .legend-dot.progress { background: #FF9800; }
+  .legend-dot.pending { background: #BDBDBD; }
+  .legend-dot.blocked { background: #F44336; }
+  .legend-dot.future { background: #90CAF9; }
+
+  /* Phase */
+  .phase { margin-bottom: 40px; }
+  .phase-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: #181D38; margin-bottom: 4px; }
+  .phase-warning { font-size: 12px; color: #CC6600; font-style: italic; margin-bottom: 12px; line-height: 1.5; }
+
+  /* Table */
+  .plan-table { width: 100%; border-collapse: collapse; background: white; border: 1px solid rgba(184,154,90,0.15); margin-bottom: 8px; }
+  .plan-table th { background: #181D38; color: #F5F0E8; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 10px 14px; text-align: left; font-weight: 500; }
+  .plan-table th:nth-child(2), .plan-table th:nth-child(3) { text-align: center; }
+  .plan-table td { padding: 10px 14px; font-size: 13px; border-bottom: 1px solid rgba(184,154,90,0.08); vertical-align: top; }
+  .plan-table tr:nth-child(even) { background: #FDFAF3; }
+  .plan-table td:nth-child(2), .plan-table td:nth-child(3) { text-align: center; color: #8A857C; font-size: 12px; }
+  .plan-table td:nth-child(4) { font-size: 11px; color: #8A857C; font-style: italic; }
+
+  /* Status badges */
+  .status { display: inline-block; padding: 2px 10px; border-radius: 10px; font-size: 10px; letter-spacing: 0.05em; font-weight: 500; }
+  .status.done { background: rgba(76,175,80,0.1); color: #4CAF50; }
+  .status.progress { background: rgba(255,152,0,0.1); color: #FF9800; }
+  .status.pending { background: rgba(189,189,189,0.15); color: #9E9E9E; }
+  .status.blocked { background: rgba(244,67,54,0.1); color: #F44336; }
+  .status.future { background: rgba(144,202,249,0.2); color: #42A5F5; }
+
+  /* Recommendation section */
+  .recommendation { background: white; border: 1px solid rgba(184,154,90,0.2); padding: 32px; margin-top: 48px; }
+  .recommendation h2 { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: #181D38; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #C4A265; }
+  .recommendation h3 { font-size: 14px; font-weight: 500; color: #181D38; margin: 16px 0 8px; }
+  .recommendation p { font-size: 13px; color: #4A4640; line-height: 1.7; margin-bottom: 8px; }
+  .recommendation ul { list-style: none; padding: 0; }
+  .recommendation li { font-size: 13px; color: #4A4640; line-height: 1.7; padding: 4px 0 4px 20px; position: relative; }
+  .recommendation li::before { content: '•'; position: absolute; left: 0; color: #B89A5A; }
+  .recommendation .note { margin-top: 16px; padding-top: 12px; border-top: 1px solid rgba(184,154,90,0.1); font-size: 12px; color: #8A857C; font-style: italic; }
+
+  /* Footer */
+  .plan-footer { text-align: center; margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(184,154,90,0.15); }
+  .plan-footer p { font-size: 11px; color: #8A857C; line-height: 1.8; }
+  .plan-footer a { color: #ff6b2b; text-decoration: none; }
+
+  @media (max-width: 640px) {
+    .plan-table { font-size: 12px; }
+    .plan-table th, .plan-table td { padding: 8px 10px; }
+    .legend { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="plan-header">
+    <a href="index.html" class="back-link">← Back to Portal</a>
+    <h1>Website Go-Live Checklist</h1>
+    <p class="subtitle">Six-phase project plan for the RH Freeman website rebuild</p>
+    <p class="meta">Prepared by Data Tradies · Updated February 2026 · Version 2.0</p>
+  </div>
+
+  <div class="legend">
+    <span class="legend-item"><span class="legend-dot done"></span> Done</span>
+    <span class="legend-item"><span class="legend-dot progress"></span> In Progress</span>
+    <span class="legend-item"><span class="legend-dot pending"></span> Pending</span>
+    <span class="legend-item"><span class="legend-dot blocked"></span> Blocked</span>
+    <span class="legend-item"><span class="legend-dot future"></span> Future</span>
+  </div>
+
+  <!-- PHASE 1 -->
+  <div class="phase">
+    <h2 class="phase-title">Phase 1 — Design Sign-Off</h2>
+    <table class="plan-table">
+      <thead><tr><th>Task</th><th>Owner</th><th>Status</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Review dark and light theme proposals</td><td>RHF</td><td><span class="status progress">In Progress</span></td><td>Live on Vercel</td></tr>
+        <tr><td>Choose preferred theme (dark/light)</td><td>RHF</td><td><span class="status pending">Pending</span></td><td></td></tr>
+        <tr><td>Confirm page structure and sections</td><td>RHF</td><td><span class="status pending">Pending</span></td><td></td></tr>
+        <tr><td>Approve logo placement and sizing</td><td>RHF</td><td><span class="status done">Done</span></td><td>Logo 1 &amp; 2 approved</td></tr>
+        <tr><td>Confirm colour palette and typography</td><td>RHF</td><td><span class="status done">Done</span></td><td>Navy/gold/cream</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="phase">
+    <h2 class="phase-title">Phase 2 — Content from Client</h2>
+    <p class="phase-warning">⚠ Critical path — photography and client approvals are the main blockers. Phone photos sufficient for Phase 1.</p>
+    <table class="plan-table">
+      <thead><tr><th>Task</th><th>Owner</th><th>Status</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Workshop / factory floor photos (5–10)</td><td>RHF</td><td><span class="status pending">Pending</span></td><td>Phone photos OK</td></tr>
+        <tr><td>Product / sample photos (5–10)</td><td>RHF</td><td><span class="status pending">Pending</span></td><td></td></tr>
+        <tr><td>Team headshots (Gerhard, Chantelle, Sam, Ro)</td><td>RHF</td><td><span class="status pending">Pending</span></td><td></td></tr>
+        <tr><td>Building exterior photo</td><td>RHF</td><td><span class="status pending">Pending</span></td><td></td></tr>
+        <tr><td>Client logos (3–5 with permission)</td><td>RHF</td><td><span class="status pending">Pending</span></td><td>Gallagher, Designbrand, RPS?</td></tr>
+        <tr><td>Confirm testimonials are still current</td><td>RHF</td><td><span class="status pending">Pending</span></td><td>3 from old site used</td></tr>
+        <tr><td>Confirm case studies are still current</td><td>RHF</td><td><span class="status pending">Pending</span></td><td>Supreme Court, Archives NZ</td></tr>
+        <tr><td>Team bios and titles for website</td><td>RHF</td><td><span class="status pending">Pending</span></td><td>Current placeholders OK?</td></tr>
+        <tr><td>Company story / about text review</td><td>RHF</td><td><span class="status pending">Pending</span></td><td></td></tr>
+        <tr><td>Contact details: phone, address, email</td><td>Both</td><td><span class="status progress">In Progress</span></td><td>(04) 232 6009 confirmed</td></tr>
+        <tr><td>Legal entity name for footer</td><td>RHF</td><td><span class="status pending">Pending</span></td><td>R H Freeman &amp; Co Ltd?</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div class="phase">
+    <h2 class="phase-title">Phase 3 — Domain, Hosting &amp; Email</h2>
+    <p class="phase-warning">⚠ Neos manages DNS — coordinate carefully to avoid breaking email (MX, SPF, DKIM, DMARC records).</p>
+    <table class="plan-table">
+      <thead><tr><th>Task</th><th>Owner</th><th>Status</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Confirm primary domain (rhfreeman.co.nz?)</td><td>RHF</td><td><span class="status pending">Pending</span></td><td></td></tr>
+        <tr><td>Register or transfer domain</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td></td></tr>
+        <tr><td>Coordinate DNS changes with Neos</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td>Critical: protect email</td></tr>
+        <tr><td>Connect domain to Vercel hosting</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td></td></tr>
+        <tr><td>Configure email DNS records (MX/SPF/DKIM)</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td>Test after change</td></tr>
+        <tr><td>Set up GitHub repository for site code</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td></td></tr>
+        <tr><td>Set up info@rhfreeman.co.nz shared mailbox or alias</td><td>Both</td><td><span class="status pending">Pending</span></td><td>See recommendation below</td></tr>
+        <tr><td>Set up sales@rhfreeman.co.nz shared mailbox or alias</td><td>Both</td><td><span class="status pending">Pending</span></td><td>For website enquiries</td></tr>
+        <tr><td>Review email domain strategy (freemans.co.nz vs rhfreeman.co.nz)</td><td>Both</td><td><span class="status pending">Pending</span></td><td>See recommendation below</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PHASE 4 -->
+  <div class="phase">
+    <h2 class="phase-title">Phase 4 — Build &amp; Integration</h2>
+    <table class="plan-table">
+      <thead><tr><th>Task</th><th>Owner</th><th>Status</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Integrate real photography into pages</td><td>Marnus</td><td><span class="status blocked">Blocked</span></td><td>Waiting Phase 2</td></tr>
+        <tr><td>Replace all placeholder content</td><td>Marnus</td><td><span class="status progress">In Progress</span></td><td>Services, cases, testimonials done</td></tr>
+        <tr><td>Add client logos to Trusted By section</td><td>Marnus</td><td><span class="status blocked">Blocked</span></td><td>Need logos + permission</td></tr>
+        <tr><td>Insert team photos</td><td>Marnus</td><td><span class="status blocked">Blocked</span></td><td>Waiting Phase 2</td></tr>
+        <tr><td>Build contact page / form</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td>Links to info@ mailbox</td></tr>
+        <tr><td>Build inner pages (About, Services detail)</td><td>Marnus</td><td><span class="status future">Future</span></td><td></td></tr>
+        <tr><td>Create and add favicon</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td></td></tr>
+        <tr><td>Add SEO metadata (title, description, OG tags)</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td></td></tr>
+        <tr><td>Set up Google Analytics / Tag Manager</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td></td></tr>
+        <tr><td>Remove any Tiri Group references from content</td><td>Marnus</td><td><span class="status done">Done</span></td><td>Checked both themes</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PHASE 5 -->
+  <div class="phase">
+    <h2 class="phase-title">Phase 5 — Testing &amp; Launch</h2>
+    <table class="plan-table">
+      <thead><tr><th>Task</th><th>Owner</th><th>Status</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Cross-browser testing (Chrome, Safari, Edge, Firefox)</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td></td></tr>
+        <tr><td>Mobile responsiveness testing</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td></td></tr>
+        <tr><td>Performance / page speed audit</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td></td></tr>
+        <tr><td>Check all links working</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td></td></tr>
+        <tr><td>Proofread all content</td><td>Both</td><td><span class="status pending">Pending</span></td><td></td></tr>
+        <tr><td>Final client sign-off</td><td>RHF</td><td><span class="status pending">Pending</span></td><td></td></tr>
+        <tr><td>Switch DNS to live site</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td>Coordinate with Neos</td></tr>
+        <tr><td>Verify SSL certificate active</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td>Auto via Vercel</td></tr>
+        <tr><td>Submit sitemap to Google Search Console</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td></td></tr>
+        <tr><td>Set up redirects from old site if needed</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PHASE 6 -->
+  <div class="phase">
+    <h2 class="phase-title">Phase 6 — Post-Launch Enhancements</h2>
+    <table class="plan-table">
+      <thead><tr><th>Task</th><th>Owner</th><th>Status</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Blog / news section</td><td>Both</td><td><span class="status future">Future</span></td><td></td></tr>
+        <tr><td>Detailed capability pages (one per service)</td><td>Marnus</td><td><span class="status future">Future</span></td><td></td></tr>
+        <tr><td>Downloadable company brochure (PDF)</td><td>Both</td><td><span class="status future">Future</span></td><td></td></tr>
+        <tr><td>Cookie consent banner</td><td>Marnus</td><td><span class="status future">Future</span></td><td>If analytics added</td></tr>
+        <tr><td>Privacy policy and terms of service pages</td><td>Both</td><td><span class="status future">Future</span></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- EMAIL RECOMMENDATION -->
+  <div class="recommendation">
+    <h2>Recommendation: Email &amp; Domain Strategy</h2>
+
+    <h3>Current situation</h3>
+    <p>Staff use personal mailboxes on freemans.co.nz (e.g. gerhard@freemans.co.nz, chantelle@freemans.co.nz). The website and company registration use rhfreeman.co.nz. The current live website contact page shows admin@freemans.co.nz. This creates a disconnect between the brand customers see online and the emails they receive.</p>
+
+    <h3>Recommended actions</h3>
+    <ul>
+      <li>Create shared mailboxes or aliases on the website domain: info@rhfreeman.co.nz (general enquiries, website contact form), sales@rhfreeman.co.nz (quotes and new business).</li>
+      <li>Consider standardising staff email addresses to @rhfreeman.co.nz to match the public brand (e.g. gerhard@rhfreeman.co.nz). This can be done as aliases initially so both domains work.</li>
+      <li>Keep freemans.co.nz active as a secondary domain but route new customer-facing communications through rhfreeman.co.nz for brand consistency.</li>
+      <li>Coordinate with Neos to configure MX, SPF, DKIM, and DMARC records correctly on the website domain before go-live.</li>
+      <li>If M365 is the email platform, shared mailboxes are included at no extra cost. Aliases are even simpler.</li>
+    </ul>
+
+    <p class="note">This is a quick win that costs nothing (M365 shared mailboxes are free) and immediately makes the brand more professional and consistent.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="plan-footer">
+    <p>
+      Prepared by Marnus Boshoff — <a href="https://datatradies.co.nz" target="_blank">Data Tradies</a><br>
+      Questions? <a href="mailto:info@datatradies.co.nz">info@datatradies.co.nz</a> · <a href="tel:+6421596641">021 596 641</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
