@@ -50,6 +50,14 @@
   .status.pending { background: rgba(189,189,189,0.15); color: #9E9E9E; }
   .status.blocked { background: rgba(244,67,54,0.1); color: #F44336; }
   .status.future { background: rgba(144,202,249,0.2); color: #42A5F5; }
+  .status { cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; user-select: none; }
+  .status:hover { transform: scale(1.1); box-shadow: 0 1px 4px rgba(0,0,0,0.12); }
+  .status:active { transform: scale(0.95); }
+  .sync-bar { text-align: center; font-size: 11px; color: #8A857C; margin-bottom: 24px; padding: 8px; background: white; border: 1px solid rgba(184,154,90,0.15); }
+  .sync-bar .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+  .sync-bar .dot.ok { background: #4CAF50; }
+  .sync-bar .dot.saving { background: #FF9800; }
+  .sync-bar .dot.err { background: #F44336; }
 
   /* Recommendation section */
   .recommendation { background: white; border: 1px solid rgba(184,154,90,0.2); padding: 32px; margin-top: 48px; }
@@ -91,17 +99,19 @@
     <span class="legend-item"><span class="legend-dot future"></span> Future</span>
   </div>
 
+  <div class="sync-bar" id="syncBar"><span class="dot ok" id="syncDot"></span> <span id="syncText">Click any status badge to update it</span></div>
+
   <!-- PHASE 1 -->
   <div class="phase">
     <h2 class="phase-title">Phase 1 — Design Sign-Off</h2>
     <table class="plan-table">
       <thead><tr><th>Task</th><th>Owner</th><th>Status</th><th>Notes</th></tr></thead>
       <tbody>
-        <tr><td>Review dark and light theme proposals</td><td>RHF</td><td><span class="status progress">In Progress</span></td><td>Live on Vercel</td></tr>
-        <tr><td>Choose preferred theme (dark/light)</td><td>RHF</td><td><span class="status pending">Pending</span></td><td></td></tr>
-        <tr><td>Confirm page structure and sections</td><td>RHF</td><td><span class="status pending">Pending</span></td><td></td></tr>
-        <tr><td>Approve logo placement and sizing</td><td>RHF</td><td><span class="status done">Done</span></td><td>Logo 1 &amp; 2 approved</td></tr>
-        <tr><td>Confirm colour palette and typography</td><td>RHF</td><td><span class="status done">Done</span></td><td>Navy/gold/cream</td></tr>
+        <tr><td>Review dark and light theme proposals</td><td>RHF</td><td><span class="status progress" data-task-id="p1-review-themes">In Progress</span></td><td>Live on Vercel</td></tr>
+        <tr><td>Choose preferred theme (dark/light)</td><td>RHF</td><td><span class="status pending" data-task-id="p1-choose-theme">Pending</span></td><td></td></tr>
+        <tr><td>Confirm page structure and sections</td><td>RHF</td><td><span class="status pending" data-task-id="p1-confirm-structure">Pending</span></td><td></td></tr>
+        <tr><td>Approve logo placement and sizing</td><td>RHF</td><td><span class="status done" data-task-id="p1-approve-logo">Done</span></td><td>Logo 1 &amp; 2 approved</td></tr>
+        <tr><td>Confirm colour palette and typography</td><td>RHF</td><td><span class="status done" data-task-id="p1-confirm-colours">Done</span></td><td>Navy/gold/cream</td></tr>
       </tbody>
     </table>
   </div>
@@ -113,17 +123,17 @@
     <table class="plan-table">
       <thead><tr><th>Task</th><th>Owner</th><th>Status</th><th>Notes</th></tr></thead>
       <tbody>
-        <tr><td>Workshop / factory floor photos (5–10)</td><td>RHF</td><td><span class="status pending">Pending</span></td><td>Phone photos OK</td></tr>
-        <tr><td>Product / sample photos (5–10)</td><td>RHF</td><td><span class="status pending">Pending</span></td><td></td></tr>
-        <tr><td>Team headshots (Gerhard, Chantelle, Sam, Ro)</td><td>RHF</td><td><span class="status pending">Pending</span></td><td></td></tr>
-        <tr><td>Building exterior photo</td><td>RHF</td><td><span class="status pending">Pending</span></td><td></td></tr>
-        <tr><td>Client logos (3–5 with permission)</td><td>RHF</td><td><span class="status pending">Pending</span></td><td>Gallagher, Designbrand, RPS?</td></tr>
-        <tr><td>Confirm testimonials are still current</td><td>RHF</td><td><span class="status pending">Pending</span></td><td>3 from old site used</td></tr>
-        <tr><td>Confirm case studies are still current</td><td>RHF</td><td><span class="status pending">Pending</span></td><td>Supreme Court, Archives NZ</td></tr>
-        <tr><td>Team bios and titles for website</td><td>RHF</td><td><span class="status pending">Pending</span></td><td>Current placeholders OK?</td></tr>
-        <tr><td>Company story / about text review</td><td>RHF</td><td><span class="status pending">Pending</span></td><td></td></tr>
-        <tr><td>Contact details: phone, address, email</td><td>Both</td><td><span class="status progress">In Progress</span></td><td>(04) 232 6009 confirmed</td></tr>
-        <tr><td>Legal entity name for footer</td><td>RHF</td><td><span class="status pending">Pending</span></td><td>R H Freeman &amp; Co Ltd?</td></tr>
+        <tr><td>Workshop / factory floor photos (5–10)</td><td>RHF</td><td><span class="status pending" data-task-id="p2-workshop-photos">Pending</span></td><td>Phone photos OK</td></tr>
+        <tr><td>Product / sample photos (5–10)</td><td>RHF</td><td><span class="status pending" data-task-id="p2-product-photos">Pending</span></td><td></td></tr>
+        <tr><td>Team headshots (Gerhard, Chantelle, Sam, Ro)</td><td>RHF</td><td><span class="status pending" data-task-id="p2-team-headshots">Pending</span></td><td></td></tr>
+        <tr><td>Building exterior photo</td><td>RHF</td><td><span class="status pending" data-task-id="p2-building-photo">Pending</span></td><td></td></tr>
+        <tr><td>Client logos (3–5 with permission)</td><td>RHF</td><td><span class="status pending" data-task-id="p2-client-logos">Pending</span></td><td>Gallagher, Designbrand, RPS?</td></tr>
+        <tr><td>Confirm testimonials are still current</td><td>RHF</td><td><span class="status pending" data-task-id="p2-confirm-testimonials">Pending</span></td><td>3 from old site used</td></tr>
+        <tr><td>Confirm case studies are still current</td><td>RHF</td><td><span class="status pending" data-task-id="p2-confirm-case-studies">Pending</span></td><td>Supreme Court, Archives NZ</td></tr>
+        <tr><td>Team bios and titles for website</td><td>RHF</td><td><span class="status pending" data-task-id="p2-team-bios">Pending</span></td><td>Current placeholders OK?</td></tr>
+        <tr><td>Company story / about text review</td><td>RHF</td><td><span class="status pending" data-task-id="p2-about-text">Pending</span></td><td></td></tr>
+        <tr><td>Contact details: phone, address, email</td><td>Both</td><td><span class="status progress" data-task-id="p2-contact-details">In Progress</span></td><td>(04) 232 6009 confirmed</td></tr>
+        <tr><td>Legal entity name for footer</td><td>RHF</td><td><span class="status pending" data-task-id="p2-legal-entity">Pending</span></td><td>R H Freeman &amp; Co Ltd?</td></tr>
       </tbody>
     </table>
   </div>
@@ -135,15 +145,15 @@
     <table class="plan-table">
       <thead><tr><th>Task</th><th>Owner</th><th>Status</th><th>Notes</th></tr></thead>
       <tbody>
-        <tr><td>Confirm primary domain (rhfreeman.co.nz?)</td><td>RHF</td><td><span class="status pending">Pending</span></td><td></td></tr>
-        <tr><td>Register or transfer domain</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td></td></tr>
-        <tr><td>Coordinate DNS changes with Neos</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td>Critical: protect email</td></tr>
-        <tr><td>Connect domain to Vercel hosting</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td></td></tr>
-        <tr><td>Configure email DNS records (MX/SPF/DKIM)</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td>Test after change</td></tr>
-        <tr><td>Set up GitHub repository for site code</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td></td></tr>
-        <tr><td>Set up info@rhfreeman.co.nz shared mailbox or alias</td><td>Both</td><td><span class="status pending">Pending</span></td><td>See recommendation below</td></tr>
-        <tr><td>Set up sales@rhfreeman.co.nz shared mailbox or alias</td><td>Both</td><td><span class="status pending">Pending</span></td><td>For website enquiries</td></tr>
-        <tr><td>Review email domain strategy (freemans.co.nz vs rhfreeman.co.nz)</td><td>Both</td><td><span class="status pending">Pending</span></td><td>See recommendation below</td></tr>
+        <tr><td>Confirm primary domain (rhfreeman.co.nz?)</td><td>RHF</td><td><span class="status pending" data-task-id="p3-confirm-domain">Pending</span></td><td></td></tr>
+        <tr><td>Register or transfer domain</td><td>Marnus</td><td><span class="status pending" data-task-id="p3-register-domain">Pending</span></td><td></td></tr>
+        <tr><td>Coordinate DNS changes with Neos</td><td>Marnus</td><td><span class="status pending" data-task-id="p3-dns-neos">Pending</span></td><td>Critical: protect email</td></tr>
+        <tr><td>Connect domain to Vercel hosting</td><td>Marnus</td><td><span class="status pending" data-task-id="p3-connect-vercel">Pending</span></td><td></td></tr>
+        <tr><td>Configure email DNS records (MX/SPF/DKIM)</td><td>Marnus</td><td><span class="status pending" data-task-id="p3-email-dns">Pending</span></td><td>Test after change</td></tr>
+        <tr><td>Set up GitHub repository for site code</td><td>Marnus</td><td><span class="status done" data-task-id="p3-github-repo">Done</span></td><td></td></tr>
+        <tr><td>Set up info@rhfreeman.co.nz shared mailbox or alias</td><td>Both</td><td><span class="status pending" data-task-id="p3-info-mailbox">Pending</span></td><td>See recommendation below</td></tr>
+        <tr><td>Set up sales@rhfreeman.co.nz shared mailbox or alias</td><td>Both</td><td><span class="status pending" data-task-id="p3-sales-mailbox">Pending</span></td><td>For website enquiries</td></tr>
+        <tr><td>Review email domain strategy (freemans.co.nz vs rhfreeman.co.nz)</td><td>Both</td><td><span class="status pending" data-task-id="p3-email-strategy">Pending</span></td><td>See recommendation below</td></tr>
       </tbody>
     </table>
   </div>
@@ -154,16 +164,16 @@
     <table class="plan-table">
       <thead><tr><th>Task</th><th>Owner</th><th>Status</th><th>Notes</th></tr></thead>
       <tbody>
-        <tr><td>Integrate real photography into pages</td><td>Marnus</td><td><span class="status blocked">Blocked</span></td><td>Waiting Phase 2</td></tr>
-        <tr><td>Replace all placeholder content</td><td>Marnus</td><td><span class="status progress">In Progress</span></td><td>Services, cases, testimonials done</td></tr>
-        <tr><td>Add client logos to Trusted By section</td><td>Marnus</td><td><span class="status blocked">Blocked</span></td><td>Need logos + permission</td></tr>
-        <tr><td>Insert team photos</td><td>Marnus</td><td><span class="status blocked">Blocked</span></td><td>Waiting Phase 2</td></tr>
-        <tr><td>Build contact page / form</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td>Links to info@ mailbox</td></tr>
-        <tr><td>Build inner pages (About, Services detail)</td><td>Marnus</td><td><span class="status future">Future</span></td><td></td></tr>
-        <tr><td>Create and add favicon</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td></td></tr>
-        <tr><td>Add SEO metadata (title, description, OG tags)</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td></td></tr>
-        <tr><td>Set up Google Analytics / Tag Manager</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td></td></tr>
-        <tr><td>Remove any Tiri Group references from content</td><td>Marnus</td><td><span class="status done">Done</span></td><td>Checked both themes</td></tr>
+        <tr><td>Integrate real photography into pages</td><td>Marnus</td><td><span class="status blocked" data-task-id="p4-real-photography">Blocked</span></td><td>Waiting Phase 2</td></tr>
+        <tr><td>Replace all placeholder content</td><td>Marnus</td><td><span class="status progress" data-task-id="p4-replace-placeholder">In Progress</span></td><td>Services, cases, testimonials done</td></tr>
+        <tr><td>Add client logos to Trusted By section</td><td>Marnus</td><td><span class="status blocked" data-task-id="p4-client-logos-section">Blocked</span></td><td>Need logos + permission</td></tr>
+        <tr><td>Insert team photos</td><td>Marnus</td><td><span class="status blocked" data-task-id="p4-team-photos">Blocked</span></td><td>Waiting Phase 2</td></tr>
+        <tr><td>Build contact page / form</td><td>Marnus</td><td><span class="status pending" data-task-id="p4-contact-form">Pending</span></td><td>Links to info@ mailbox</td></tr>
+        <tr><td>Build inner pages (About, Services detail)</td><td>Marnus</td><td><span class="status future" data-task-id="p4-inner-pages">Future</span></td><td></td></tr>
+        <tr><td>Create and add favicon</td><td>Marnus</td><td><span class="status pending" data-task-id="p4-favicon">Pending</span></td><td></td></tr>
+        <tr><td>Add SEO metadata (title, description, OG tags)</td><td>Marnus</td><td><span class="status pending" data-task-id="p4-seo-metadata">Pending</span></td><td></td></tr>
+        <tr><td>Set up Google Analytics / Tag Manager</td><td>Marnus</td><td><span class="status pending" data-task-id="p4-analytics">Pending</span></td><td></td></tr>
+        <tr><td>Remove any Tiri Group references from content</td><td>Marnus</td><td><span class="status done" data-task-id="p4-remove-tiri">Done</span></td><td>Checked both themes</td></tr>
       </tbody>
     </table>
   </div>
@@ -174,16 +184,16 @@
     <table class="plan-table">
       <thead><tr><th>Task</th><th>Owner</th><th>Status</th><th>Notes</th></tr></thead>
       <tbody>
-        <tr><td>Cross-browser testing (Chrome, Safari, Edge, Firefox)</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td></td></tr>
-        <tr><td>Mobile responsiveness testing</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td></td></tr>
-        <tr><td>Performance / page speed audit</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td></td></tr>
-        <tr><td>Check all links working</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td></td></tr>
-        <tr><td>Proofread all content</td><td>Both</td><td><span class="status pending">Pending</span></td><td></td></tr>
-        <tr><td>Final client sign-off</td><td>RHF</td><td><span class="status pending">Pending</span></td><td></td></tr>
-        <tr><td>Switch DNS to live site</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td>Coordinate with Neos</td></tr>
-        <tr><td>Verify SSL certificate active</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td>Auto via Vercel</td></tr>
-        <tr><td>Submit sitemap to Google Search Console</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td></td></tr>
-        <tr><td>Set up redirects from old site if needed</td><td>Marnus</td><td><span class="status pending">Pending</span></td><td></td></tr>
+        <tr><td>Cross-browser testing (Chrome, Safari, Edge, Firefox)</td><td>Marnus</td><td><span class="status pending" data-task-id="p5-cross-browser">Pending</span></td><td></td></tr>
+        <tr><td>Mobile responsiveness testing</td><td>Marnus</td><td><span class="status pending" data-task-id="p5-mobile-testing">Pending</span></td><td></td></tr>
+        <tr><td>Performance / page speed audit</td><td>Marnus</td><td><span class="status pending" data-task-id="p5-performance">Pending</span></td><td></td></tr>
+        <tr><td>Check all links working</td><td>Marnus</td><td><span class="status pending" data-task-id="p5-check-links">Pending</span></td><td></td></tr>
+        <tr><td>Proofread all content</td><td>Both</td><td><span class="status pending" data-task-id="p5-proofread">Pending</span></td><td></td></tr>
+        <tr><td>Final client sign-off</td><td>RHF</td><td><span class="status pending" data-task-id="p5-client-signoff">Pending</span></td><td></td></tr>
+        <tr><td>Switch DNS to live site</td><td>Marnus</td><td><span class="status pending" data-task-id="p5-switch-dns">Pending</span></td><td>Coordinate with Neos</td></tr>
+        <tr><td>Verify SSL certificate active</td><td>Marnus</td><td><span class="status pending" data-task-id="p5-ssl-cert">Pending</span></td><td>Auto via Vercel</td></tr>
+        <tr><td>Submit sitemap to Google Search Console</td><td>Marnus</td><td><span class="status pending" data-task-id="p5-sitemap">Pending</span></td><td></td></tr>
+        <tr><td>Set up redirects from old site if needed</td><td>Marnus</td><td><span class="status pending" data-task-id="p5-redirects">Pending</span></td><td></td></tr>
       </tbody>
     </table>
   </div>
@@ -194,11 +204,11 @@
     <table class="plan-table">
       <thead><tr><th>Task</th><th>Owner</th><th>Status</th><th>Notes</th></tr></thead>
       <tbody>
-        <tr><td>Blog / news section</td><td>Both</td><td><span class="status future">Future</span></td><td></td></tr>
-        <tr><td>Detailed capability pages (one per service)</td><td>Marnus</td><td><span class="status future">Future</span></td><td></td></tr>
-        <tr><td>Downloadable company brochure (PDF)</td><td>Both</td><td><span class="status future">Future</span></td><td></td></tr>
-        <tr><td>Cookie consent banner</td><td>Marnus</td><td><span class="status future">Future</span></td><td>If analytics added</td></tr>
-        <tr><td>Privacy policy and terms of service pages</td><td>Both</td><td><span class="status future">Future</span></td><td></td></tr>
+        <tr><td>Blog / news section</td><td>Both</td><td><span class="status future" data-task-id="p6-blog">Future</span></td><td></td></tr>
+        <tr><td>Detailed capability pages (one per service)</td><td>Marnus</td><td><span class="status future" data-task-id="p6-capability-pages">Future</span></td><td></td></tr>
+        <tr><td>Downloadable company brochure (PDF)</td><td>Both</td><td><span class="status future" data-task-id="p6-brochure">Future</span></td><td></td></tr>
+        <tr><td>Cookie consent banner</td><td>Marnus</td><td><span class="status future" data-task-id="p6-cookie-consent">Future</span></td><td>If analytics added</td></tr>
+        <tr><td>Privacy policy and terms of service pages</td><td>Both</td><td><span class="status future" data-task-id="p6-privacy-terms">Future</span></td><td></td></tr>
       </tbody>
     </table>
   </div>
@@ -231,5 +241,73 @@
   </div>
 
 </div>
+
+<script>
+  const SUPABASE_URL = 'https://oogjcekbnmpijppzuozi.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9vZ2pjZWtibm1waWpwcHp1b3ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzNzI2NjksImV4cCI6MjA4Njk0ODY2OX0.S38V9cP4D0aTO2UW7uyUGOFxO77XCp3tSHJfWwxfsgc';
+  const HEADERS = { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates' };
+
+  const CYCLE = ['done', 'progress', 'pending', 'blocked', 'future'];
+  const LABELS = { done: 'Done', progress: 'In Progress', pending: 'Pending', blocked: 'Blocked', future: 'Future' };
+
+  function setSyncStatus(state, msg) {
+    const dot = document.getElementById('syncDot');
+    const text = document.getElementById('syncText');
+    dot.className = 'dot ' + state;
+    text.textContent = msg;
+  }
+
+  function applyStatus(el, status) {
+    el.className = 'status ' + status;
+    el.textContent = LABELS[status];
+  }
+
+  // Load statuses from Supabase on page load
+  async function loadStatuses() {
+    try {
+      const res = await fetch(SUPABASE_URL + '/rest/v1/task_statuses?select=task_id,status', { headers: HEADERS });
+      if (!res.ok) throw new Error('Load failed');
+      const rows = await res.json();
+      const map = {};
+      rows.forEach(r => map[r.task_id] = r.status);
+      document.querySelectorAll('[data-task-id]').forEach(el => {
+        const s = map[el.dataset.taskId];
+        if (s) applyStatus(el, s);
+      });
+      setSyncStatus('ok', 'Synced — click any status to update');
+    } catch (e) {
+      setSyncStatus('err', 'Could not load — using defaults');
+    }
+  }
+
+  // Save a single status to Supabase
+  async function saveStatus(taskId, status) {
+    setSyncStatus('saving', 'Saving...');
+    try {
+      const res = await fetch(SUPABASE_URL + '/rest/v1/task_statuses', {
+        method: 'POST',
+        headers: HEADERS,
+        body: JSON.stringify({ task_id: taskId, status: status, updated_at: new Date().toISOString() })
+      });
+      if (!res.ok) throw new Error('Save failed');
+      setSyncStatus('ok', 'Saved');
+    } catch (e) {
+      setSyncStatus('err', 'Save failed — try again');
+    }
+  }
+
+  // Click handler — cycle through statuses
+  document.addEventListener('click', function(e) {
+    const el = e.target.closest('[data-task-id]');
+    if (!el) return;
+    const current = CYCLE.find(s => el.classList.contains(s)) || 'pending';
+    const next = CYCLE[(CYCLE.indexOf(current) + 1) % CYCLE.length];
+    applyStatus(el, next);
+    saveStatus(el.dataset.taskId, next);
+  });
+
+  // Also update the GitHub repo task to done since we already did it
+  loadStatuses();
+</script>
 </body>
 </html>
