@@ -248,8 +248,8 @@
 </div>
 
 <script>
-  const SUPABASE_URL = 'https://oogjcekbnmpijppzuozi.supabase.co';
-  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9vZ2pjZWtibm1waWpwcHp1b3ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzNzI2NjksImV4cCI6MjA4Njk0ODY2OX0.S38V9cP4D0aTO2UW7uyUGOFxO77XCp3tSHJfWwxfsgc';
+  const SUPABASE_URL = 'https://xvfrpxfquzqhajggswrg.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh2ZnJweGZxdXpxaGFqZ2dzd3JnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA3NTYzMTAsImV4cCI6MjA3NjMzMjMxMH0.vIjDKQrs8tuzbwTExrInpcO6Xx9ATVGvzljgA-ZKIaU';
   const HEADERS = { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json', 'Prefer': 'resolution=merge-duplicates' };
 
   const STATUSES = ['done', 'progress', 'pending', 'blocked', 'future'];
@@ -270,7 +270,7 @@
     setSyncStatus('saving', 'Saving...');
     try {
       const body = { task_id: taskId, updated_at: new Date().toISOString(), ...fields };
-      const res = await fetch(SUPABASE_URL + '/rest/v1/task_statuses', {
+      const res = await fetch(SUPABASE_URL + '/rest/v1/task_statuses?on_conflict=task_id', {
         method: 'POST', headers: HEADERS, body: JSON.stringify(body)
       });
       if (!res.ok) throw new Error('Save failed');
